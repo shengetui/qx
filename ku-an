@@ -9,16 +9,7 @@ if (!$response.body) {
 let obj = JSON.parse($response.body);
 
  const data = json.data;
-for (let i = 0; i < data.length; i++) {
-  const item = data[i];
-
-  if (item && item.entityType === 'card') {
-    // 先判断元素是否存在
-
-    data.splice(i, 1);  
-    i--;
-  }
-} 
+ 
 ob.data = data
 
 $done({ body: JSON.stringify(obj) });

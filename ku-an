@@ -1,0 +1,21 @@
+// 2024-01-17 00:10
+const url = $request.url;
+
+if (!$response.body) {
+  $done({});
+}
+
+
+let obj = JSON.parse($response.body);
+
+ const data = json.data;
+ for(let i = 0; i < data.length; i++) {
+  if(data[i].entityType === 'card') {
+    data.splice(i, 1); 
+    i--; 
+  }
+}
+ob.data = data
+
+$done({ body: JSON.stringify(obj) });
+ 

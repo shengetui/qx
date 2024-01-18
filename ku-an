@@ -18,7 +18,7 @@ if (-1 != $request.url.indexOf("replyList")) {
     })
 } else if (-1 != $request.url.indexOf("dataList")) {
     var t = JSON.parse($response.body);
-    t.data = t.data.filter(t => !("sponsorCard" == t.entityTemplate || -1 != t.title.indexOf("精选配件")||"card" == t.entityType)), $done({
+    t.data = t.data.filter(t => !("sponsorCard" == t.entityTemplate || -1 != t.title.indexOf("精选配件")||"card" == t.entityType ||"imageSquareScrollCard" == t.entityTemplate )), $done({
         body: JSON.stringify(t)
     })
 } else if (-1 != $request.url.indexOf("detail")) {

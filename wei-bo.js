@@ -597,7 +597,11 @@ if (url.includes("/interface/sdk/sdkad.php")) {
           } else if (item?.category === "group") {
             if (item?.items?.length > 0) {
               item.items = item.items.filter((i) => i.data?.card_type === 17);
-              item.items = item.items[0].data.group.filter(item => {
+
+
+             item.items = item.items.filter((i) => i.data?.group.filter(item => {
+		    
+       
              // 保留以 "sinaweibo://searchall" 开头的
             if (item.scheme && item.scheme.startsWith("sinaweibo://searchall")) {
 		    // 保留没有 'icon' 属性的
@@ -614,7 +618,8 @@ if (url.includes("/interface/sdk/sdkad.php")) {
 			}
             // 其余情况都删除
             return false;
-        });
+        }));
+		    console.log(item)
               newItems.push(item);
             }
           }
@@ -828,8 +833,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
           }
         }
       }
-      //todo 这里需要修改
-      obj.items = [];
+ 
     }
     if (obj?.statuses?.length > 0) {
       let newStatuses = [];

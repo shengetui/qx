@@ -1,11 +1,11 @@
 //test  2024-01-18 17:38:17
  
 const version = 'V1.0.10';
-$notify('~~~~~~~~~~~~~~~~~~~~~~~~~~')
-$notify($request.url)
+console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~')
+ 
 if ($request.url.includes("container_timeline")) {
 var t = JSON.parse($response.body);
-	$notify(t)
+	 
    if (t.items && t.items.length > 0 &&
         t.items[0].items && t.items[0].items.length > 0 &&
         t.items[0].items[0].data && t.items[0].items[0].data.group) {
@@ -34,4 +34,4 @@ var t = JSON.parse($response.body);
             body: JSON.stringify(t)
         });
     }
-}  else $done($response);
+}  else $done();

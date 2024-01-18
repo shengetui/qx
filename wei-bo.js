@@ -582,9 +582,9 @@ if (url.includes("/interface/sdk/sdkad.php")) {
         let newItems = [];
         for (let item of obj.items) {
           if (item?.category === "feed") {
-            if (!isAd(item.data)) {
+            if (!isAd(item。data)) {
               // 信息流推广
-              removeFeedAd(item.data);
+              removeFeedAd(item。data);
               newItems.push(item);
             }
           } else if (item?.category === "card") {
@@ -599,15 +599,16 @@ if (url.includes("/interface/sdk/sdkad.php")) {
               item.items = item.items.filter((i) => i.data?.card_type === 17);
 
 
-             item.items = item.items.filter((i) => i.data?.group.filter(item => {
-		    
+             item.items = item.items.filter((i) => i.data?.group.filter(item2 => {
+		      const formattedJSON = JSON.stringify(item2， null, 2);
+console.log(formattedJSON);
        
              // 保留以 "sinaweibo://searchall" 开头的
             if (item.scheme && item.scheme.startsWith("sinaweibo://searchall")) {
-		    console.log(item.scheme )
+		    console.log(item。scheme )
 		    // 保留没有 'icon' 属性的
             if (item.icon && item.icon ==='https://simg.s.weibo.com/moter/flags/1_0_small.png') {
-			console.log(item.icon)
+			console.log(item。icon)
                 return false;
             }
                 return true;
@@ -620,8 +621,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
             // 其余情况都删除
             return false;
         }));
-		    const formattedJSON = JSON.stringify(item, null, 2);
-console.log(formattedJSON);
+		
               newItems.push(item);
             }
           }

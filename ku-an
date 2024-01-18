@@ -1,4 +1,4 @@
-// 2024-01-17 00:10   
+// 2024-01-17 00:10    复制于墨鱼，但是他的正则匹配规则有点 不对，
 const version = 'V1.0.10';
 
 if (-1 != $request.url.indexOf("replyList")) {
@@ -18,7 +18,7 @@ if (-1 != $request.url.indexOf("replyList")) {
     })
 } else if (-1 != $request.url.indexOf("dataList")) {
     var t = JSON.parse($response.body);
-    t.data = t.data.filter(t => !("sponsorCard" == t.entityTemplate || -1 != t.title.indexOf("精选配件")||"card" == t.entityType ||"imageSquareScrollCard" == t.entityTemplate )), $done({
+    t.data = t.data.filter(t => !("sponsorCard" == t.entityTemplate || -1 != t.title.indexOf("精选配件") ||"imageSquareScrollCard" == t.entityTemplate )), $done({
         body: JSON.stringify(t)
     })
 } else if (-1 != $request.url.indexOf("detail")) {

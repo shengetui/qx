@@ -604,6 +604,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
        
              // 保留以 "sinaweibo://searchall" 开头的
             if (item.scheme && item.scheme.startsWith("sinaweibo://searchall")) {
+		    console.log(item.scheme )
 		    // 保留没有 'icon' 属性的
             if (item.icon && item.icon ==='https://simg.s.weibo.com/moter/flags/1_0_small.png') {
 			console.log(item.icon)
@@ -619,12 +620,13 @@ if (url.includes("/interface/sdk/sdkad.php")) {
             // 其余情况都删除
             return false;
         }));
-		    console.log(item)
+		    const formattedJSON = JSON.stringify(item, null, 2);
+console.log(formattedJSON);
               newItems.push(item);
             }
           }
         }
-	      console.log(newItems)
+	  
         obj.items = newItems;
       }
       if (obj?.loadedInfo) {

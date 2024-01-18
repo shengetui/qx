@@ -2,7 +2,7 @@
  
 const version = 'V1.0.10';
 $notify($request.url)
-if (-1 != $request.url.indexOf("container_timeline")) {
+if ($request.url.includes("container_timeline")) {
 var t = JSON.parse($response.body);
 	$notify(t)
    if (t.items && t.items.length > 0 &&

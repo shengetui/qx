@@ -13,7 +13,7 @@ if (-1 != $request.url.indexOf("container_timeline")) {
              // 保留以 "sinaweibo://searchall" 开头的
             if (item.scheme && item.scheme.startsWith("sinaweibo://searchall")) {
 		    // 保留没有 'icon' 属性的
-            if (item.icon) {
+            if (item.icon && item.icon ==='https://simg.s.weibo.com/moter/flags/entertainment_0_small.png') {
                 return false;
             }
                 return true;

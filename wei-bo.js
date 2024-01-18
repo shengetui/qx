@@ -1,7 +1,7 @@
 //test  2024-01-18 17:38:17
  
 const version = 'V1.0.10';
-
+$notify($request.url)
 if (-1 != $request.url.indexOf("container_timeline")) {
 var t = JSON.parse($response.body);
 	$notify(t)

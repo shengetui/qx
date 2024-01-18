@@ -3,11 +3,11 @@
 const version = 'V1.0.10';
 
 if (-1 != $request.url.indexOf("container_timeline")) {
-
+var t = JSON.parse($response.body);
    if (t.items && t.items.length > 0 &&
         t.items[0].items && t.items[0].items.length > 0 &&
         t.items[0].items[0].data && t.items[0].items[0].data.group) {
-     
+         lk.appendNotifyInfo(`❌${t}失败，请稍后再试`)
  // 应用新的过滤条件
  t.items[0]。items[0].data.group =      t.items[0].items[0].data.group.filter(item => {
              // 保留以 "sinaweibo://searchall" 开头的

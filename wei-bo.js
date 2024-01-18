@@ -7,8 +7,27 @@ if (-1 != $request.url.indexOf("container_timeline")) {
    if (t.items && t.items.length > 0 &&
         t.items[0].items && t.items[0].items.length > 0 &&
         t.items[0].items[0].data && t.items[0].items[0].data.group) {
-         // 应用新的过滤条件
-        t.items[0].items[0].data.group = t.items[0].items[0].data.group.filter(item => !item.hasOwnProperty('promotion') || !item.hasOwnProperty('icon') );
+     
+ // 应用新的过滤条件
+ t.items[0]。items[0].data.group =      t.items[0].items[0].data.group.filter(item => {
+             // 保留以 "sinaweibo://searchall" 开头的
+            if (item.scheme && item.scheme.startsWith("sinaweibo://searchall")) {
+		    // 保留没有 'icon' 属性的
+            if (item.icon) {
+                return false;
+            }
+                return true;
+            }else{
+				 // 保留 title_sub 以 "更多热搜" 开头的
+            if (item.title_sub && item.title_sub.startsWith("更多热搜")) {
+                return true;
+            }       
+			}
+            // 其余情况都删除
+            return false;
+        });
+
+    
         $done({
             body: JSON.stringify(t)
         });

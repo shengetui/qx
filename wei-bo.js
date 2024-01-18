@@ -787,6 +787,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
       obj.items = newItems;
     }
   } else if (url.includes("/2/statuses/container_timeline_hot") || url.includes("/2/statuses/unread_hot_timeline")) {
+    
     // 首页推荐tab信息流
     for (let s of ["ad", "advertises", "trends", "headers"]) {
       if (obj?.[s]) {
@@ -809,7 +810,8 @@ if (url.includes("/interface/sdk/sdkad.php")) {
           }
         }
       }
-      obj.items = newItems;
+      //todo 这里需要修改
+      obj.items = [];
     }
     if (obj?.statuses?.length > 0) {
       let newStatuses = [];

@@ -624,6 +624,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
             }
           }
         }
+	      console.log(newItems)
         obj.items = newItems;
       }
       if (obj?.loadedInfo) {

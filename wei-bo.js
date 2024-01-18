@@ -600,21 +600,21 @@ if (url.includes("/interface/sdk/sdkad.php")) {
 
 
              item.items = item.items.filter((i) => i.data?.group.filter(item2 => {
-		      const formattedJSON = JSON.stringify(item2， null, 2);
+		      const formattedJSON = JSON.stringify(item2, null, 2);
 console.log(formattedJSON);
        
              // 保留以 "sinaweibo://searchall" 开头的
-            if (item.scheme && item.scheme.startsWith("sinaweibo://searchall")) {
-		    console.log(item。scheme )
+            if (item2.scheme && item2.scheme.startsWith("sinaweibo://searchall")) {
+		 
 		    // 保留没有 'icon' 属性的
-            if (item.icon && item.icon ==='https://simg.s.weibo.com/moter/flags/1_0_small.png') {
-			console.log(item。icon)
+            if (item2.icon && item2.icon ==='https://simg.s.weibo.com/moter/flags/1_0_small.png') {
+			 
                 return false;
             }
                 return true;
             }else{
 				 // 保留 title_sub 以 "更多热搜" 开头的
-            if (item.title_sub && item.title_sub.startsWith("更多热搜")) {
+            if (item2.title_sub && item2.title_sub.startsWith("更多热搜")) {
                 return true;
             }       
 			}

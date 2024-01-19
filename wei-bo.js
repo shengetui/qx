@@ -596,16 +596,11 @@ if (url.includes("/interface/sdk/sdkad.php")) {
             newItems.push(item);
           } else if (item?.category === "group") {
        
-            if (item?.items?.length > 0) {
+            if (item?.items?.length) {
               item.items = item.items.filter((i) => i.data?.card_type === 17);
 
-             console.log(item+"11111111111111111111" )
-             console.log(item.items[0]+"22222222222222222222222222" )
 
-             console.log(item.items[0]?.data+"33333333333333333333333" )
-
-             console.log(item.items[0]?.data.group+"444444444444444444444444" )
-      
+              if (item?.items?.length) {
 
           $notify('test', '', JSON.stringify(item, null, 2) );
           item.items[0]?.data.group = item.items[0]?.data?.group?.filter(item => {
@@ -623,6 +618,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
             
               newItems.push(JSON.stringify(t));
             }
+          }
           }
         }
  

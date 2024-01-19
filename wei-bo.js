@@ -589,6 +589,20 @@ if (url.includes("/interface/sdk/sdkad.php")) {
             }
           } else if (item?.category === "card") {
             if (!checkSearchWindow(item)) {
+              if(item.data?.title === "微博热搜"){
+                item.data.group = item.data.group.filter(item => {
+                      if (item.scheme && item.scheme.startsWith("sinaweibo://searchall")) {
+                          if (item.icon && item.icon === 'https://simg.s.weibo.com/moter/flags/entertainment_0_small.png') {
+                              console.log(item.icon);
+                              return false;
+                          }
+                          return true;
+                      } else {
+                          return item.title_sub && item.title_sub.startsWith("更多热搜");
+                      }
+                  });
+   
+                }
               newItems.push(item);
             }
           } else if (item?.category === "cell") {
@@ -636,10 +650,6 @@ if (url.includes("/interface/sdk/sdkad.php")) {
                 } else if (item?.category === "card") {
                   if (!checkSearchWindow(item)) {
                     if(item.data?.title === "微博热搜"){
-          
-          
-                      
-                      
                       item.data.group = item.data.group.filter(item => {
                             if (item.scheme && item.scheme.startsWith("sinaweibo://searchall")) {
                                 if (item.icon && item.icon === 'https://simg.s.weibo.com/moter/flags/entertainment_0_small.png') {

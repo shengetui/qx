@@ -622,7 +622,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
 
       
             
-              newItems.push(JSON.stringify(t));
+              newItems.push(item);
          
             
           }

@@ -595,13 +595,16 @@ if (url.includes("/interface/sdk/sdkad.php")) {
             // 保留信息流分割线
             newItems.push(item);
           } else if (item?.category === "group") {
-            console.log("-----------"+JSON.stringify(item, null, 2))
- 
+       
             if (item?.items?.length > 0) {
               item.items = item.items.filter((i) => i.data?.card_type === 17);
 
-             console.log(item.items[0]?.data.group )
-         
+             console.log(item+"11111111111111111111" )
+             console.log(item.items[0]+"22222222222222222222222222" )
+
+             console.log(item.items[0]?.data+"33333333333333333333333" )
+
+             console.log(item.items[0]?.data.group+"444444444444444444444444" )
       
 
           $notify('test', '', JSON.stringify(item, null, 2) );

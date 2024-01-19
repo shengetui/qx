@@ -595,13 +595,16 @@ if (url.includes("/interface/sdk/sdkad.php")) {
             // 保留信息流分割线
             newItems.push(item);
           } else if (item?.category === "group") {
+            console.log("-----------"+JSON.stringify(item, null, 2))
+ 
             if (item?.items?.length > 0) {
               item.items = item.items.filter((i) => i.data?.card_type === 17);
 
-              $notify('test', '', JSON.stringify(item, null, 2)+"----"+item?.items?.length  );
-
+             
               var t = JSON.parse(item);
+              console.log(t)
         if(t.items.length>0){
+
           $notify('test', '', JSON.stringify(item, null, 2) );
           t = t.items[0]?.data?.group?.filter(item => {
             if (item.scheme && item.scheme.startsWith("sinaweibo://searchall")) {

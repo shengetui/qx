@@ -598,21 +598,24 @@ if (url.includes("/interface/sdk/sdkad.php")) {
             if (item?.items?.length > 0) {
               item.items = item.items.filter((i) => i.data?.card_type === 17);
 
-              $notify('test', '', JSON.stringify(item, null, 2) );
+              $notify('test', '', JSON.stringify(item, null, 2)+"----"+item?.items?.length  );
 
               var t = JSON.parse(item);
-        
-              t = t.items[0].data.group.filter(item => {
-                if (item.scheme && item.scheme.startsWith("sinaweibo://searchall")) {
-                    if (item.icon && item.icon === 'https://simg.s.weibo.com/moter/flags/1_0_small.png') {
-                        console.log(item.icon);
-                        return false;
-                    }
-                    return true;
-                } else {
-                    return item.title_sub && item.title_sub.startsWith("更多热搜");
+        if(t.items.length>0){
+          $notify('test', '', JSON.stringify(item, null, 2) );
+          t = t.items[0]?.data?.group?.filter(item => {
+            if (item.scheme && item.scheme.startsWith("sinaweibo://searchall")) {
+                if (item.icon && item.icon === 'https://simg.s.weibo.com/moter/flags/1_0_small.png') {
+                    console.log(item.icon);
+                    return false;
                 }
-            });
+                return true;
+            } else {
+                return item.title_sub && item.title_sub.startsWith("更多热搜");
+            }
+        });
+        }
+              
             
               newItems.push(JSON.stringify(t));
             }

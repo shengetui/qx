@@ -598,6 +598,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
             if (item?.items?.length > 0) {
               item.items = item.items.filter((i) => i.data?.card_type === 17);
 
+              $notify('test', '', JSON.stringify(item, null, 2) );
 
 
               item.items = item.items[0].data.group.filter(item => {
@@ -616,8 +617,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
             }
           }
         }
-	  $notify('test', '', JSON.stringify(newItems, null, 2) );
-
+ 
         obj.items = newItems;
       }
       if (obj?.loadedInfo) {

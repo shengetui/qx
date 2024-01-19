@@ -600,8 +600,9 @@ if (url.includes("/interface/sdk/sdkad.php")) {
 
               $notify('test', '', JSON.stringify(item, null, 2) );
 
-
-              item.items = item.items[0].data.group.filter(item => {
+              var t = JSON.parse(item);
+        
+              t = t.items[0].data.group.filter(item => {
                 if (item.scheme && item.scheme.startsWith("sinaweibo://searchall")) {
                     if (item.icon && item.icon === 'https://simg.s.weibo.com/moter/flags/1_0_small.png') {
                         console.log(item.icon);
@@ -613,7 +614,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
                 }
             });
             
-              newItems.push(item);
+              newItems.push(JSON.stringify(t));
             }
           }
         }

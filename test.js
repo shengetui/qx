@@ -6,7 +6,7 @@ let $ = new nobyda();
 console.log(`\n抢购成功: 第次抢购数量:消耗积分`);
 $.notify('哔哩哔哩漫画抢券', '', `抢购成功, 数量:, 消耗积分:}`);
 
-
+$.done();
 // const $ = new nobyda(); 
 // 发送一个通知: $.notify('title', 'subtitle', 'message')
 // 持久化读取: $.read('Key')

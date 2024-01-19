@@ -858,7 +858,8 @@ if (url.includes("/interface/sdk/sdkad.php")) {
             removeFeedAd(item?.data);
             // 投票窗口
             removeVoteInfo(item?.data);
-            newItems.push(item);
+           	if(!item?.item_category){
+            newItems.push(item);}
           } else {
             // 移除其他推广
             continue;

@@ -582,9 +582,9 @@ if (url.includes("/interface/sdk/sdkad.php")) {
         let newItems = [];
         for (let item of obj.items) {
           if (item?.category === "feed") {
-            if (!isAd(item。data)) {
+            if (!isAd(item.data)) {
               // 信息流推广
-              removeFeedAd(item。data);
+              removeFeedAd(item.data);
               newItems.push(item);
             }
           } else if (item?.category === "card") {
@@ -597,29 +597,27 @@ if (url.includes("/interface/sdk/sdkad.php")) {
           } else if (item?.category === "group") {
             if (item?.items?.length > 0) {
               item.items = item.items.filter((i) => i.data?.card_type === 17);
-   item.items = item.items[0].data.group.filter(item => {
-             // 保留以 "sinaweibo://searchall" 开头的
-            if (item.scheme && item.scheme.startsWith("sinaweibo://searchall")) {
-		    // 保留没有 'icon' 属性的
-            if (item.icon && item.icon ==='https://simg.s.weibo.com/moter/flags/1_0_small.png') {
-			console.log(item.icon)
-                return false;
-            }
-                return true;
-            }else{
-				 // 保留 title_sub 以 "更多热搜" 开头的
-            if (item.title_sub && item.title_sub.startsWith("更多热搜")) {
-                return true;
-            }       
-			}
-            // 其余情况都删除
-            return false;
-        });
+
+
+
+              item.items = item.items[0].data.group.filter(item => {
+                if (item.scheme && item.scheme.startsWith("sinaweibo://searchall")) {
+                    if (item.icon && item.icon === 'https://simg.s.weibo.com/moter/flags/1_0_small.png') {
+                        console.log(item.icon);
+                        return false;
+                    }
+                    return true;
+                } else {
+                    return item.title_sub && item.title_sub.startsWith("更多热搜");
+                }
+            });
+            
               newItems.push(item);
             }
           }
         }
-	  
+	  $notify('test', '', JSON.stringify(newItems, null, 2) );
+
         obj.items = newItems;
       }
       if (obj?.loadedInfo) {

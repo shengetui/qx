@@ -618,7 +618,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
                       });
 			  
 			  }
-                if (ii?.data?.card_type === 182  || ii?.data?.card_type === 118) { {
+                if (ii?.data?.card_type === 182  || ii?.data?.card_type === 118) { 
                   // 热议话题
                   continue;
                 } else {
@@ -693,7 +693,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
                       });
 			  
 			  }
-                      if (ii?.data?.card_type === 182  || ii?.data?.card_type === 118) { {
+                      if (ii?.data?.card_type === 182  || ii?.data?.card_type === 118) { 
                         // 热议话题
                         continue;
                       } else {

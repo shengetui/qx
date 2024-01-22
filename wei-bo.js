@@ -592,8 +592,20 @@ if (url.includes("/interface/sdk/sdkad.php")) {
             if ([19, 118, 208, 217, 249]?.includes(item?.data?.card_type)) {
               continue;
             } else {
-                if(item.data?.title === "微博热搜"){
-                    item.data.group = item.data.group.filter(item => {
+    
+              newItems.push(item);
+            }
+          } else if (item?.category === "cell") {
+            // 保留信息流分割线
+            newItems.push(item);
+          } else if (item?.category === "group") {
+            if (item?.items?.length > 0) {
+              let newII = [];
+              for (let ii of item.items) {
+
+		      		
+						  if (ii?.data?.card_type === 17 ){
+			      ii.data.group = ii.data.group.filter(item => {
                           if (item.scheme && item.scheme.startsWith("sinaweibo://searchall")) {
                               if (item.icon && item.icon === 'https://simg.s.weibo.com/moter/flags/entertainment_0_small.png') {
                                   console.log(item.icon);
@@ -604,18 +616,9 @@ if (url.includes("/interface/sdk/sdkad.php")) {
                               return item.title_sub && item.title_sub.startsWith("更多热搜");
                           }
                       });
-                
-                    }
-              newItems.push(item);
-            }
-          } else if (item?.category === "cell") {
-            // 保留信息流分割线
-            newItems.push(item);
-          } else if (item?.category === "group") {
-            if (item?.items?.length > 0) {
-              let newII = [];
-              for (let ii of item.items) {
-                if (ii?.data?.card_type === 182) {
+			  
+			  }
+                if (ii?.data?.card_type === 182  || ii?.data?.card_type === 118) { {
                   // 热议话题
                   continue;
                 } else {
@@ -666,20 +669,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
                   if ([19, 118, 208, 217, 249]?.includes(item?.data?.card_type)) {
                     continue;
                   } else {
-                    if(item.data?.title === "微博热搜"){
-                        item.data.group = item.data.group.filter(item => {
-                              if (item.scheme && item.scheme.startsWith("sinaweibo://searchall")) {
-                                  if (item.icon && item.icon === 'https://simg.s.weibo.com/moter/flags/entertainment_0_small.png') {
-                                      console.log(item.icon);
-                                      return false;
-                                  }
-                                  return true;
-                              } else {
-                                  return item.title_sub && item.title_sub.startsWith("更多热搜");
-                              }
-                          });
-                    
-                        }
+             
                     newItems.push(item);
                   }
                 } else if (item?.category === "cell") {
@@ -689,7 +679,21 @@ if (url.includes("/interface/sdk/sdkad.php")) {
                   if (item?.items?.length > 0) {
                     let newII = [];
                     for (let ii of item.items) {
-                      if (ii?.data?.card_type === 182) {
+			    				  if (ii?.data?.card_type === 17 ){
+			      ii.data.group = ii.data.group.filter(item => {
+                          if (item.scheme && item.scheme.startsWith("sinaweibo://searchall")) {
+                              if (item.icon && item.icon === 'https://simg.s.weibo.com/moter/flags/entertainment_0_small.png') {
+                                  console.log(item.icon);
+                                  return false;
+                              }
+                              return true;
+                          } else {
+                              return item.title_sub && item.title_sub.startsWith("更多热搜");
+                          }
+                      });
+			  
+			  }
+                      if (ii?.data?.card_type === 182  || ii?.data?.card_type === 118) { {
                         // 热议话题
                         continue;
                       } else {

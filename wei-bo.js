@@ -852,6 +852,9 @@ if (url.includes("/interface/sdk/sdkad.php")) {
     if (obj?.items?.length > 0) {
       let newItems = [];
       for (let item of obj.items) {
+	 
+				item.items = item?.items?.filter(item => item.data.card_type !== 118);
+
         if (!isAd(item?.data)) {
           if (item?.category === "feed") {
             // 信息流推广

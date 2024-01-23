@@ -603,10 +603,13 @@ if (url.includes("/interface/sdk/sdkad.php")) {
               let newII = [];
               for (let ii of item.items) {
                 if (ii?.data?.card_type === 17) {
+           
+
                   ii.data?.group = ii.data?.group?.filter(item => (
-                    (item?.scheme?.startsWith("sinaweibo://searchall") &&
+                    !item?.promotion &&
+                    ((item?.scheme?.startsWith("sinaweibo://searchall") &&
                       item?.icon && item.icon !== 'https://simg.s.weibo.com/moter/flags/entertainment_0_small.png') ||
-                    (item?.title_sub?.startsWith("更多热搜"))
+                     (item?.title_sub?.startsWith("更多热搜")))
                   )) || [];
                 }
                 
@@ -690,9 +693,10 @@ if (url.includes("/interface/sdk/sdkad.php")) {
 
                         if (ii?.data?.card_type === 17) {
                           ii.data?.group = ii.data?.group?.filter(item => (
-                            (item?.scheme?.startsWith("sinaweibo://searchall") &&
+                            !item?.promotion &&
+                            ((item?.scheme?.startsWith("sinaweibo://searchall") &&
                               item?.icon && item.icon !== 'https://simg.s.weibo.com/moter/flags/entertainment_0_small.png') ||
-                            (item?.title_sub?.startsWith("更多热搜"))
+                             (item?.title_sub?.startsWith("更多热搜")))
                           )) || [];
                         }
                       if (ii?.data?.card_type === 182 || ii?.data?.card_type === 118) {

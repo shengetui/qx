@@ -605,7 +605,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
                 if (ii?.data?.card_type === 17) {
            
 
-                  ii.data?.group = ii.data?.group?.filter(item => (
+                  ii.data.group = ii.data?.group?.filter(item => (
                     !item?.promotion &&
                     ((item?.scheme?.startsWith("sinaweibo://searchall") &&
                       item?.icon && item.icon !== 'https://simg.s.weibo.com/moter/flags/entertainment_0_small.png') ||
@@ -692,7 +692,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
         
 
                         if (ii?.data?.card_type === 17) {
-                          ii.data?.group = ii.data?.group?.filter(item => (
+                          ii.data.group = ii.data?.group?.filter(item => (
                             !item?.promotion &&
                             ((item?.scheme?.startsWith("sinaweibo://searchall") &&
                               item?.icon && item.icon !== 'https://simg.s.weibo.com/moter/flags/entertainment_0_small.png') ||

@@ -111,7 +111,26 @@ if (url.includes("/interface/sdk/sdkad.php")) {
     if (obj?.show) {
       obj.show = 0;
     }
-  } else if (url.includes("/2/client/publisher_list")) {
+  } 
+  
+  else if (url.includes("/2/flowpage")) {
+    // 更多热搜页面
+	//channelInfo 对象
+    if (obj?.channelInfo?.channels?.length > 0) {
+		obj.channelInfo.channels = obj.channelInfo.channels.filter((i) =>   i.title === "热搜");
+     }
+	 //items 对象
+	 if(obj.items.length>0){
+    obj.items = obj.items.filter((i) =>  i.itemId);
+    for ( i  in obj.items){
+      if(obj.items[i].items.length>0){
+        obj.items[i].items = obj.items[i].items.filter((i) => i.data.pic !== "https://simg.s.weibo.com/20210408_search_point_orange.png" &&  i.data.pic !== "https://simg.s.weibo.com/20180205110043_img_search_stick%403x.png" );
+      }
+    }
+  }
+ 
+  }
+  else if (url.includes("/2/client/publisher_list")) {
     // 首页右上角按钮
     if (obj?.elements?.length > 0) {
       obj.elements = obj.elements.filter((i) => i.app_name === "写微博" || i.app_name === "图片" || i.app_name === "视频");

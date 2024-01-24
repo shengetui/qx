@@ -641,8 +641,8 @@ if (url.includes("/interface/sdk/sdkad.php")) {
                      (item?.title_sub?.startsWith("更多热搜")))
                   )) || [];
                 }
-                
-                if (ii?.data?.card_type === 182 || ii?.data?.card_type === 118) {
+                if ([19, 118, 208, 217, 249, 182, 118, 192]?.includes(ii?.data?.card_type)) {
+                // if (ii?.data?.card_type === 182 || ii?.data?.card_type === 118 || ii?.data?.card_type === 192) {
                   // 热议话题
                   continue;
                 } else {
@@ -727,7 +727,8 @@ if (url.includes("/interface/sdk/sdkad.php")) {
                              (item?.title_sub?.startsWith("更多热搜")))
                           )) || [];
                         }
-                      if (ii?.data?.card_type === 182 || ii?.data?.card_type === 118) {
+                        if ([19, 118, 208, 217, 249, 182, 118, 192]?.includes(ii?.data?.card_type)) {
+                      // if (ii?.data?.card_type === 182 || ii?.data?.card_type === 118  || ii?.data?.card_type === 192) {
                         // 热议话题
                         continue;
                       } else {

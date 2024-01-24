@@ -84,6 +84,11 @@ HOST-KEYWORD, asiad.byteactivity, REJECT
 # HOST-KEYWORD, pangolin.snssdk.com, REJECT
 # HOST-KEYWORD, pglstatp-toutiao, REJECT
 HOST-KEYWORD, video-cn.snssdk.com, REJECT
+# 这些都是字节的api，衍生的太多了，所以做了大范围的匹配，宁可错杀也不放过爆*花:  lf-cdn-tos.bytescm.com  tnc3-alisc1.zijieapi.com  lf1-cdn-tos.bytegoofy.com  tnc11-bjlgy.zijieapi.com  tnc3-aliec2.zijieapi.com  lf-cdn-tos.bytescm.com  tnc11-alisc1.zijieapi.com  tnc3-bjlgy.bytedance.com
+HOST-KEYWORD, bytescm.com, REJECT
+HOST-KEYWORD, zijieapi.com, REJECT
+HOST-KEYWORD, bytegoofy.com, REJECT
+HOST-KEYWORD, bytedance.com, REJECT
 
 # ======= H ======= #
 # 海尔智家

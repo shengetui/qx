@@ -89,7 +89,7 @@ HOST-KEYWORD, bytescm.com, REJECT
 HOST-KEYWORD, zijieapi.com, REJECT
 HOST-KEYWORD, bytegoofy.com, REJECT
 HOST-KEYWORD, bytedance.com, REJECT
-
+HOST-KEYWORD, pglstatp, REJECT
 # ======= H ======= #
 # 海尔智家
 HOST-SUFFIX, ehaier.com, REJECT

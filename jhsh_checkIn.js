@@ -99,7 +99,7 @@ if (isGetCookie = typeof $request !== `undefined`) {
       5: "星期五",
       6: "星期六",
     };
-    if (day == skipDay) {
+    if (day === skipDay) {
       let text = `今天是断签日[${weekMap[day]}], 跳过签到任务。`
       console.log(text);
       message += text;
@@ -146,7 +146,7 @@ if (isGetCookie = typeof $request !== `undefined`) {
                 if ($.isGetGift) break;
               }
             }
-          };
+          }
           if (!$.isGetGift) {
             $.getGiftMsg = `请打开app查看优惠券到账情况。\n`;
           }
@@ -273,15 +273,15 @@ async function main() {
           debug(data);
           data = JSON.parse(data);
           let text = '';
-          if (data.errCode == 0) {
+          if (data.errCode === 0) {
             text = `🎉 账号 [${$.info?.USR_TEL ? hideSensitiveData($.info?.USR_TEL, 3, 4) : $.index}] 签到成功`;
             console.log(text);
             message += text;
-            if (data?.data?.IS_AWARD == 1) {
+            if (data?.data?.IS_AWARD === 1) {
               // 更新自动断签日
               if (skipDay >= 0) {
                 // 当 day 等于 6 时，下一断签日修正为 0，否则 day + 1
-                day = day == 6 ? 0 : day + 1;
+                day = day === 6 ? 0 : day + 1;
                 $.setdata(String(day), 'JHSH_SKIPDAY');
                 console.log(`♻️ 已更新断签配置：明天(${weekMap[day]})将会断签`);
               }
@@ -386,7 +386,7 @@ async function getLatestVersion() {
             console.log(`版本信息: ${trackName} ${version}\nBundleId: ${bundleId} \n更新时间: ${currentVersionReleaseDate}`);
           } catch (e) {
             $.log(e);
-          };
+          }
         } else {
           console.log(`版本信息获取失败\n`);
         }

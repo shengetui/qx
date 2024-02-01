@@ -75,9 +75,9 @@ function GetCookie() {
         "message" : "成功",
         "obj" : {
             "openId" : null,
-            "userId" : "2c7ac49f21a340189c2472fa90004bbc",
+            "userId" : " ",
             "companyDays" : "0",
-            "token" : "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyYzdhYzQ5ZjIxYTM0MDE4OWMyNDcyZmE5MDAwNGJiYyIsInN1YiI6IntcInVzZXJTb3VyY2VcIjpcIkFQUFwiLFwib3NUeXBlXCI6XCJpT1NcIixcImRldmljZUlkXCI6XCJDM0ZDOTEzMC0zQzA4LTQ1MzctQUFDNy1BMUFCREM4NDczMjRcIn0iLCJpYXQiOjE3MDY3NzEzNjEsImV4cCI6MTcwOTM2MzM2MX0.7AMLQne7cRIDT_jkH_QTGx7ENe_4mC5LqQz0APD-5FA"
+            "token" : " .eyJqdGkiOiIyYzdhYzQ5ZjIxYTM0MDE4OWMyNDcyZmE5MDAwNGJiYyIsInN1YiI6IntcInVzZXJTb3VyY2VcIjpcIkFQUFwiLFwib3NUeXBlXCI6XCJpT1NcIixcImRldmljZUlkXCI6XCJDM0ZDOTEzMC0zQzA4LTQ1MzctQUFDNy1BMUFCREM4NDczMjRcIn0iLCJpYXQiOjE3MDY3NzEzNjEsImV4cCI6MTcwOTM2MzM2MX0.7AMLQne7cRIDT_jkH_QTGx7ENe_4mC5LqQz0APD-5FA"
         },
         "success" : true
     }

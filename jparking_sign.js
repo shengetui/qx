@@ -41,7 +41,6 @@ http-request ^https:\/\/sytgate\.jslife\.com\.cn\/core-gateway\/order\/carno\/pa
 
 // ---------------------- 一般不动变量区域 ----------------------
 const $ = new Env('捷停车签到');
-const taskMap = { "T00": "签到", "T01": "浏览", "T02": "看视频" };
 const origin = 'https://sytgate.jslife.com.cn';
 const jtc_userId_key = 'jtc_userId';
 const Notify = 1;  // 0 为关闭通知, 1 为打开通知, 默认为 1
@@ -49,7 +48,7 @@ $.messages = [];  // 为通知准备的空数组
 
 // ---------------------- 自定义变量区域 ----------------------
 $.is_debug = ($.isNode() ? process.env.IS_DEDUG : $.getdata('is_debug')) || 'false';  // 调试模式
-let userId =  `@2c7ac49f21a340189c2472fa90004bbc,eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyYzdhYzQ5ZjIxYTM0MDE4OWMyNDcyZmE5MDAwNGJiYyIsInN1YiI6IntcInVzZXJTb3VyY2VcIjpcIkFQUFwiLFwib3NUeXBlXCI6XCJpT1NcIixcImRldmljZUlkXCI6XCJDM0ZDOTEzMC0zQzA4LTQ1MzctQUFDNy1BMUFCREM4NDczMjRcIn0iLCJpYXQiOjE3MDY3NzEzNjEsImV4cCI6MTcwOTM2MzM2MX0.7AMLQne7cRIDT_jkH_QTGx7ENe_4mC5LqQz0APD-5FA`
+let userId = ($.isNode() ? process.env.jtc_userId : $.getdata(jtc_userId_key)) || '', userIdArr = [];
 let watchVideo = ($.isNode() ? process.env.jtc_video : $.getdata('jtc_video')) || 'false';  // 此功能有封号风险，默认禁用
 
 // 统一管理 api 接口
@@ -76,11 +75,7 @@ const Api = {
 !(async () => {
     // 检查变量
     await checkEnv();
-    // 获取 Cookie
-    if (isGetCookie = typeof $request !== 'undefined') {
-        GetCookie();
-        return;
-    }
+
     // 未检测到账号变量, 退出
     if (!userIdArr[0]) {
         throw new Error(`❌ 未获取到 userId, 请添加环境变量`);
@@ -98,7 +93,7 @@ const Api = {
 
 // 脚本入口函数
 async function main() {
-    for (let i = 0; i < userIdArr.length; i++) {
+    for (let i = 0; i < 1; i++) {
         console.log(`账号[${i + 1}]开始执行`);
 
         // 变量初始化
@@ -108,18 +103,21 @@ async function main() {
         $.integralValue = 0;
         $.userId = userIdArr[i].split(',')[0];
         $.token = userIdArr[i].split(',')[1];
+        $.taskMap = { "T00": "签到", "T01": "浏览", "T02": "看视频" };
 
-        // 浏览任务
+        // 领取浏览任务
         await browse();
 
-        // 看视频
-        watchVideo == 'true' && $.token && await videos();
-        delete taskMap['T02'];
+        // 看视频任务
+         await videos();
 
-        // 遍历 taskNo
-        for (taskNo in taskMap) {
-            await receive(taskNo);
-        }
+        // 领取签到奖励
+        await receive("T00");
+
+        // 领取浏览奖励
+        await receive("T01");
+
+        // 打印结果
         console.log($.result);
 
         // 等待 1 秒
@@ -148,7 +146,7 @@ function GetCookie() {
     if ($request && $request.body) {
         let body = JSON.parse($request.body);
         if (body?.userId) {
-            if (!userIdArr.includes(body.userId)) {
+            if (!new RegExp(body.userId).test(userId)) {
                 userId ? userId += `@${body.userId},${body.token}` : userId += `${body.userId},${body.token}`;
                 $.setdata(userId, jtc_userId_key);
                 console.log(`userId: ${body.userId} \n`);
@@ -166,7 +164,7 @@ async function receive(taskNo) {
     let result = await httpRequest(options(Api.receive.url, `{"userId":"${$.userId}","reqSource":"APP_JTC","taskNo":"${taskNo}"}`));
     debug(result, "receive");
     if (result.success) {
-        $.result += `${taskMap[taskNo]} 任务完成, 获得 ${result.data} 停车币\n`;
+        $.result += `${$.taskMap[taskNo]} 任务完成, 获得 ${result.data} 停车币\n`;
     } else {
         $.result += `${result.message} \n`;
     }
@@ -177,8 +175,8 @@ async function browse() {
     let result = await httpRequest(options(Api.complete.url, `{"userId":"${$.userId}","reqSource":"APP_JTC","taskNo":"T01"}`));
     debug(result, "browse");
     if (!result.success) {
-        console.log(`❌ 领取浏览任务失败: ${result.message}`);
-        delete taskMap['T01'];
+        console.log(`❌ 领取 ${$.taskMap['T01']} 任务失败: ${result.message}`);
+        delete $.taskMap['T01'];
     }
 }
 
@@ -186,7 +184,6 @@ async function browse() {
 async function videos() {
     // 获取 adToken
     let res = await httpRequest(options(Api.adToken.url, `{"adTime":"600","userId":"${$.userId}","taskNo":"T02","token":"${$.token}","timestamp":"${Date.now()}"}`));
-    console.log(222)
     debug(res, "getAdToken");
     if (res.success) {
         let = adToken = res['data']['token'];
@@ -203,9 +200,9 @@ async function videos() {
                 break;
             }
         }
-        videosCoins && ($.result += `${taskMap['T02']} 任务完成, 获得 ${videosCoins} 停车币\n`);
+        videosCoins && ($.result += `${$.taskMap['T02']} 任务完成, 获得 ${videosCoins} 停车币\n`);
     } else {
-        console.log(`❌ 获取 adToken失败: `, res);
+        console.log(`❌ 领取 ${$.taskMap['T02']} 任务失败: ${result.message}`);
     }
 }
 
@@ -230,6 +227,8 @@ async function checkEnv() {
     // 多账号分割
     userIdArr = userId.split('@');
     // 当下标0为空字符串也会占用长度，所以需判断是否为空字符串
+
+    userIdArr[0] = userIdArr[1]
     if (userIdArr[0]) {
         console.log(`\n检测到 ${userIdArr.length} 个账号变量\n`);
         return userIdArr.length;

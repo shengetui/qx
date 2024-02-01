@@ -59,7 +59,7 @@ function queryDailyTask() {
             }
         })
         .then((resp) => {
-            console.log(JSON.parse(resp.body))
+            console.log(JSON.parse(resp.body.substring(0, resp.body.length - 2)))
             $.tasks = JSON.parse(resp.body).obj.taskTitleLevels
         })
 }

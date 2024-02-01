@@ -68,21 +68,9 @@ let watchVideo = ($.isNode() ? process.env.jtc_video : $.getdata('jtc_video')) |
 
 // 获取数据
 function GetCookie() {
-
-    let cc={
-        "reqId" : null,
-        "resultCode" : "0",
-        "message" : "成功",
-        "obj" : {
-            "openId" : null,
-            "userId" : " ",
-            "companyDays" : "0",
-            "token" : " .eyJqdGkiOiIyYzdhYzQ5ZjIxYTM0MDE4OWMyNDcyZmE5MDAwNGJiYyIsInN1YiI6IntcInVzZXJTb3VyY2VcIjpcIkFQUFwiLFwib3NUeXBlXCI6XCJpT1NcIixcImRldmljZUlkXCI6XCJDM0ZDOTEzMC0zQzA4LTQ1MzctQUFDNy1BMUFCREM4NDczMjRcIn0iLCJpYXQiOjE3MDY3NzEzNjEsImV4cCI6MTcwOTM2MzM2MX0.7AMLQne7cRIDT_jkH_QTGx7ENe_4mC5LqQz0APD-5FA"
-        },
-        "success" : true
-    }
-
-    let body = JSON.parse(cc);
+    $.messages.push($request.body);
+    if ($request && $request.body) {
+        let body = JSON.parse($request.body);
         if (body?.userId) {
             if (!userIdArr.includes(body.userId)) {
                 userId ? userId += `@${body.userId},${body.token}` : userId += `${body.userId},${body.token}`;
@@ -93,7 +81,7 @@ function GetCookie() {
                 console.log(`❌ ${body.userId} 已存在\n`);
             }
         }
-
+    }
 }
 
 

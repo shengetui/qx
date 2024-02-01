@@ -49,7 +49,7 @@ $.messages = [];  // 为通知准备的空数组
 
 // ---------------------- 自定义变量区域 ----------------------
 $.is_debug = ($.isNode() ? process.env.IS_DEDUG : $.getdata('is_debug')) || 'false';  // 调试模式
-let userId = ($.isNode() ? process.env.jtc_userId :  `@2c7ac49f21a340189c2472fa90004bbc,eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyYzdhYzQ5ZjIxYTM0MDE4OWMyNDcyZmE5MDAwNGJiYyIsInN1YiI6IntcInVzZXJTb3VyY2VcIjpcIkFQUFwiLFwib3NUeXBlXCI6XCJpT1NcIixcImRldmljZUlkXCI6XCJDM0ZDOTEzMC0zQzA4LTQ1MzctQUFDNy1BMUFCREM4NDczMjRcIn0iLCJpYXQiOjE3MDY3NzEzNjEsImV4cCI6MTcwOTM2MzM2MX0.7AMLQne7cRIDT_jkH_QTGx7ENe_4mC5LqQz0APD-5FA`) || '', userIdArr = [];
+let userId =  `@2c7ac49f21a340189c2472fa90004bbc,eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyYzdhYzQ5ZjIxYTM0MDE4OWMyNDcyZmE5MDAwNGJiYyIsInN1YiI6IntcInVzZXJTb3VyY2VcIjpcIkFQUFwiLFwib3NUeXBlXCI6XCJpT1NcIixcImRldmljZUlkXCI6XCJDM0ZDOTEzMC0zQzA4LTQ1MzctQUFDNy1BMUFCREM4NDczMjRcIn0iLCJpYXQiOjE3MDY3NzEzNjEsImV4cCI6MTcwOTM2MzM2MX0.7AMLQne7cRIDT_jkH_QTGx7ENe_4mC5LqQz0APD-5FA`
 let watchVideo = ($.isNode() ? process.env.jtc_video : $.getdata('jtc_video')) || 'false';  // 此功能有封号风险，默认禁用
 
 // 统一管理 api 接口

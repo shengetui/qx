@@ -1,13 +1,16 @@
 //星星充电
+
 const $ = new Env('星星充电');
+$.msg( "------------" );
+
 $.is_debug = ($.isNode() ? process.env.IS_DEDUG : $.getdata('is_debug')) || 'true';
 const XXCD_KEY = 'XXCD_KEY';
 const notify = $.isNode() ? require('./sendNotify') : '';
 let xxcdCookie = ($.isNode() ? process.env.HISENSE_CPS : $.getdata(XXCD_KEY)) || '';
 let message = '';
 
-  $.msg( $response );
-if ( $response !== `undefined`) {
+  $.msg( request  );
+if ( request  !== `undefined`) {
     GetCookie();
     $.done();
 } else {
@@ -113,14 +116,14 @@ async function main() {
 
 // 获取数据
 function GetCookie() {
-    if ($response && $response.body) {
-        let body = JSON.parse($request.body);
-        if (body?.data?.accessToken) {
-            xxcd_token_key += `${body.data.accessToken},${body.data.appUserId}`;
+    if (request  && $request.headers.Authorization) {
+
+
+            xxcd_token_key += `${$request.headers.Authorization},${$request.headers.userId}`;
                 $.setdata(xxcd_token_key, XXCD_KEY);
                 console.log(`XXCD_KEY: xxcd_token_key \n`);
             $.msg(`🎉 XXCD_KEY 写入成功\n  `+xxcd_token_key);
-        }
+
     }
 }
 

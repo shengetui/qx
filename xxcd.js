@@ -118,9 +118,9 @@ async function main() {
 // 获取数据
 function GetCookie() {
     if ($request  && $request.headers.Authorization) {
+        let  xxcd_token_key = ""
 
-
-            xxcd_token_key += `${$request.headers.Authorization},${$request.headers.userId}`;
+              xxcd_token_key += `${$request.headers.Authorization},${$request.headers.userId}`;
                 $.setdata(xxcd_token_key, XXCD_KEY);
                 console.log(`XXCD_KEY: xxcd_token_key \n`);
             $.msg(`🎉 XXCD_KEY 写入成功\n  `+xxcd_token_key);

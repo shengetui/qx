@@ -3,6 +3,8 @@
 
 //QX  https:\/\/gateway\.starcharge\.com\/apph5\/xcxApiV2\/wechat\/starPoint\/sign  script-request-body   https://raw.githubusercontent.com/shengetui/qx/main/xxcd.js
 
+// [MITM]
+// hostname = *.starcharge.com
 
 
 const $ = new Env('星星充电');

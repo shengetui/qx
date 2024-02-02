@@ -6,7 +6,7 @@ const notify = $.isNode() ? require('./sendNotify') : '';
 let xxcdCookie = ($.isNode() ? process.env.HISENSE_CPS : $.getdata(XXCD_KEY)) || '';
 let message = '';
 
-$.messages.push( $response);
+  $.msg( $response );
 if ( $response !== `undefined`) {
     GetCookie();
     $.done();
@@ -114,12 +114,12 @@ async function main() {
 // 获取数据
 function GetCookie() {
     if ($response && $response.body) {
-        let body = JSON.parse($response.body);
+        let body = JSON.parse($request.body);
         if (body?.data?.accessToken) {
             xxcd_token_key += `${body.data.accessToken},${body.data.appUserId}`;
                 $.setdata(xxcd_token_key, XXCD_KEY);
                 console.log(`XXCD_KEY: xxcd_token_key \n`);
-                $.messages.push(`🎉 XXCD_KEY 写入成功\n  `+xxcd_token_key);
+            $.msg(`🎉 XXCD_KEY 写入成功\n  `+xxcd_token_key);
         }
     }
 }

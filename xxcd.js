@@ -8,7 +8,8 @@ const XXCD_KEY = 'XXCD_KEY';
 const notify = $.isNode() ? require('./sendNotify') : '';
 let xxcdCookie = ($.isNode() ? process.env.HISENSE_CPS : $.getdata(XXCD_KEY)) || '';
 let message = '';
-
+console.log()
+debug($request);
 $.msg('test', '', $request );
 if ( $request  !== `undefined`) {
     GetCookie();

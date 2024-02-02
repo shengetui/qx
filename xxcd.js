@@ -1,5 +1,10 @@
 //星星充电
 
+
+//QX  https:\/\/gateway\.starcharge\.com\/apph5\/xcxApiV2\/wechat\/starPoint\/sign  script-request-body   https://raw.githubusercontent.com/shengetui/qx/main/xxcd.js
+
+
+
 const $ = new Env('星星充电');
 
 

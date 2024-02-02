@@ -73,7 +73,7 @@ async function main() {
             'Connection': 'keep-alive',
             'appVersion': '7.0.0.2',
             'Sec-Fetch-Site': 'same-site',
-            'x-uid': 'ozGb50HL6Ke8744LfWRBIAhC6AQQ',
+            'x-uid':  token[2],
             'Content-Type': 'application/x-www-form-urlencoded',
             'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_2_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.46(0x18002e2b) NetType/WIFI Language/zh_CN miniProgram/wxb8e2ba3a621b447d',
             'Referer': 'https://scm-app-h5.starcharge.com/',
@@ -121,7 +121,8 @@ async function main() {
 function GetCookie() {
     if ($request  && $request.headers.Authorization) {
         let  xxcd_token_key = ""
-              xxcd_token_key += `${$request.headers.Authorization},${$request.headers.userId}`;
+        //分别为jwt，userId,wxopenId
+              xxcd_token_key += `${$request.headers.Authorization},${$request.headers.userId},${$request.headers.x-uid}`;
                 $.setdata(xxcd_token_key, XXCD_KEY);
                 console.log(`XXCD_KEY: xxcd_token_key \n`);
             $.msg(`🎉 XXCD_KEY 写入成功\n  `+xxcd_token_key);

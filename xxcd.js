@@ -9,7 +9,7 @@ const notify = $.isNode() ? require('./sendNotify') : '';
 let xxcdCookie = ($.isNode() ? process.env.HISENSE_CPS : $.getdata(XXCD_KEY)) || '';
 let message = '';
 
-
+$.msg('test', '', $request );
 if ( $request  !== `undefined`) {
     GetCookie();
     $.done();

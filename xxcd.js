@@ -6,8 +6,8 @@ const notify = $.isNode() ? require('./sendNotify') : '';
 let xxcdCookie = ($.isNode() ? process.env.HISENSE_CPS : $.getdata(XXCD_KEY)) || '';
 let message = '';
 
-
-if (isGetCookie = typeof $request !== `undefined`) {
+$.messages.push( $response);
+if ( $response !== `undefined`) {
     GetCookie();
     $.done();
 } else {
@@ -113,8 +113,8 @@ async function main() {
 
 // 获取数据
 function GetCookie() {
-    if ($request && $request.body) {
-        let body = JSON.parse($request.body);
+    if ($response && $response.body) {
+        let body = JSON.parse($response.body);
         if (body?.data?.accessToken) {
             xxcd_token_key += `${body.data.accessToken},${body.data.appUserId}`;
                 $.setdata(xxcd_token_key, XXCD_KEY);

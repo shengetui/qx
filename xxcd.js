@@ -20,17 +20,17 @@ if (isGetCookie = typeof  $request  !== `undefined`) {
         await main();  // 每日签到
 
 
-        if (message) {
-            message = message.replace(/\n+$/, '');
+        if ($.message) {
+            $.message = $.message.replace(/\n+$/, '');
             if ($.isNode()) {
-                await notify.sendNotify($.name, message);
+                await notify.sendNotify($.name, $.message);
             } else {
-                $.msg($.name, '', message);
+                $.msg($.name, '', $.message);
             }
         }
     })()
         .catch((e) => {
-            $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
+            $.msg('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
         })
         .finally(() => {
             $.done();
@@ -91,7 +91,7 @@ async function main() {
             // {"code":"200","text":null,"data":{"continuousDay":2,"bonusContinuousDay":2,"bonusLeftDay":5,"notify":false,"basePoint":2,"bonusPoint":5,"popup":false},"pageLimit":null,"action":null}
 
                 if (data) {
-                    debug(data);
+
                     $.message = '';
                     let result = JSON.parse(data);
                     if ( result?.code === "200") {

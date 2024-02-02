@@ -1,7 +1,7 @@
 //星星充电
 
 const $ = new Env('星星充电');
-$.msg( "------------" );
+
 
 $.is_debug = ($.isNode() ? process.env.IS_DEDUG : $.getdata('is_debug')) || 'true';
 const XXCD_KEY = 'XXCD_KEY';
@@ -9,7 +9,7 @@ const notify = $.isNode() ? require('./sendNotify') : '';
 let xxcdCookie = ($.isNode() ? process.env.HISENSE_CPS : $.getdata(XXCD_KEY)) || '';
 let message = '';
 
-  $.msg( $request  );
+
 if ( $request  !== `undefined`) {
     GetCookie();
     $.done();

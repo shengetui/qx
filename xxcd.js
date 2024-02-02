@@ -123,7 +123,7 @@ function GetCookie() {
         let  xxcd_token_key = ""
         console.log($request)
         //分别为jwt，userId,wxopenId
-              xxcd_token_key += `${$request.headers.Authorization},${$request.headers.userId},${$request.headers.x-uid}`;
+              xxcd_token_key += `${$request.headers.Authorization},${$request.headers.userId},${$request.headers['x-uid']}`;
                 $.setdata(xxcd_token_key, XXCD_KEY);
                 console.log(`XXCD_KEY: xxcd_token_key \n`);
             $.msg(`🎉 XXCD_KEY 写入成功\n  `+xxcd_token_key);

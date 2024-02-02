@@ -8,20 +8,15 @@ const XXCD_KEY = 'XXCD_KEY';
 const notify = $.isNode() ? require('./sendNotify') : '';
 let xxcdCookie = ($.isNode() ? process.env.HISENSE_CPS : $.getdata(XXCD_KEY)) || '';
 let message = '';
-console.log()
-debug($request);
-$.msg('test', '', $request );
-if ( $request  !== `undefined`) {
+
+if (isGetCookie = typeof  $request  !== `undefined`) {
     GetCookie();
     $.done();
 } else {
     !(async () => {
 
 
-        let randomInt = Math.floor(Math.random() * 30);
-        console.log(`\n随机等待 ${randomInt} 秒\n`);
-        await $.wait(randomInt * 1000);
-        console.log(`===== 账号[${$.index}]开始执行 =====\n`);
+        console.log(`===== 账号 开始执行 =====\n`);
         await main();  // 每日签到
 
 
@@ -54,7 +49,7 @@ async function main() {
     m2 = m2 + timestampInMilliseconds;
     m2 = MD5(m2).toUpperCase();
     let token =    xxcdCookie.split(',');
-    console.log(m2);
+
 
 
     let opt = {
@@ -88,7 +83,7 @@ async function main() {
     }
 
 
-    debug(opt);
+
     return new Promise(resolve => {
         $.post(opt, async (err, resp, data) => {
             try {
@@ -119,7 +114,6 @@ async function main() {
 function GetCookie() {
     if ($request  && $request.headers.Authorization) {
         let  xxcd_token_key = ""
-
               xxcd_token_key += `${$request.headers.Authorization},${$request.headers.userId}`;
                 $.setdata(xxcd_token_key, XXCD_KEY);
                 console.log(`XXCD_KEY: xxcd_token_key \n`);

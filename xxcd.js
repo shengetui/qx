@@ -172,7 +172,7 @@ async function main() {
 // 获取数据
 function GetCookie() {
     $request.headers = ObjectKeys2LowerCase($request.headers);  // 将 headers 的所有 key 转换为小写以兼容各个代理 App
-    if ($request && $request.headers.Authorization) {
+    if ($request && $request.headers.authorization) {
         let xxcd_token_key = ""
         console.log($request)
         //分别为jwt，userId,wxopenId

@@ -1,6 +1,6 @@
 /**
  * 脚本名称：霸王茶几 领取
- * 脚本作者：什 某人
+ * 脚本作者：
  * 更新日期：2024-02-04
  * 仓库地址：https://github.com/shengetui/qx
 
@@ -10,14 +10,48 @@
  hostname = gateway.starcharge.com
 
  [rewrite_local]
- ^https:\/\/qmwebapi\.qmai\.cn\/web\/catering2-apiserver\/common\/loading-info url script-request-body https://raw.githubusercontent.com/shengetui/qx/main/bwcj.js
+ https:\/\/qmwebapi\.qmai\.cn\/web\/catering2-apiserver\/crm\/points-info url script-request-header https://raw.githubusercontent.com/shengetui/qx/main/bwcj.js
 
  [task_local]
  17 7 * * * https://raw.githubusercontent.com/shengetui/qx/main/bwcj.js, tag=霸王茶几, enabled=true
 
 
+ ------------------ Stash 配置 -----------------
 
+ cron:
+ script:
+ - name: 霸王茶几
+ cron: '17 7 * * 1'
+ timeout: 60
+
+ http:
+ mitm:
+ - "gateway.starcharge.com"
+ script:
+ - match: https:\/\/qmwebapi\.qmai\.cn\/web\/catering2-apiserver\/crm\/points-info
+ name: 霸王茶几
+ type: request
+ require-body: true
+
+ script-providers:
+ 霸王茶几:
+ url: https://raw.githubusercontent.com/shengetui/qx/main/bwcj.js
+ interval: 86400
+
+
+
+ ------------------ Loon 配置 ------------------
+
+ [MITM]
+ hostname = gateway.starcharge.com
+
+ [Script]
+ https:\/\/qmwebapi\.qmai\.cn\/web\/catering2-apiserver\/crm\/points-info tag=霸王茶几Cookie, script-path=https://raw.githubusercontent.com/shengetui/qx/main/bwcj.js,requires-body=1
+
+ cron "17 7 * * 1" script-path=https://raw.githubusercontent.com/shengetui/qx/main/bwcj.js,tag = 霸王茶几,enable=true
  */
+
+ 
 
 const $ = new Env('霸王茶几');
 

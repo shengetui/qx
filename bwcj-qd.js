@@ -3,7 +3,7 @@
 const $ = new Env('霸王茶几签到');
 
 
-$.is_debug = ($.isNode() ? process.env.IS_DEDUG : $.getdata('is_debug')) || 'true';
+$.is_debug = ($.isNode() ? process.env.IS_DEDUG : $.getdata('is_debug')) || 'false';
 const _KEY = 'BWCJ_KEY';
 const notify = $.isNode() ? require('./sendNotify') : '';
 let _Cookie = ($.isNode() ? process.env.HISENSE_CPS : $.getdata(_KEY)) || '';

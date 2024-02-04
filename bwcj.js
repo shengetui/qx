@@ -35,13 +35,13 @@ if (isGetCookie = typeof $request !== `undefined`) {
     !(async () => {
 
         if (bwcjCookie) {
-            $.msg('token为空', '', 'test');
-            $.done();
-        } else {
             console.log(`===== 账号 开始执行 =====\n`);
             for (i = 0; i < 3; i++) {
                 await main();  // 每日签到
             }
+
+        } else {
+            $.msg('token为空', '', 'test');
 
         }
 

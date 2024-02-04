@@ -15,8 +15,10 @@ if (xxxCookie){
 
     $.setdata(xxxCookie, 'bw_body');
     $.msg(`🎉 _KEY 写入成功\n  ` + xxxCookie);
+    $.done();
 }else {
     $.msg(`🎉 _KEY 写入失败\n  ` );
+    $.done();
 }
 
 

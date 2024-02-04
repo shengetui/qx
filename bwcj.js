@@ -13,7 +13,7 @@
  https:\/\/qmwebapi\.qmai\.cn\/web\/catering2-apiserver\/crm\/points-info url script-request-header https://raw.githubusercontent.com/shengetui/qx/main/bwcj.js
 
  [task_local]
- 17 7 * * * https://raw.githubusercontent.com/shengetui/qx/main/bwcj.js, tag=霸王茶几, enabled=true
+ 17 7 * * 1 https://raw.githubusercontent.com/shengetui/qx/main/bwcj.js, tag=霸王茶几, enabled=true
 
 
  ------------------ Stash 配置 -----------------

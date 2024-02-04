@@ -39,7 +39,7 @@ if (isGetCookie = typeof $request !== `undefined`) {
             $.done();
         } else {
             console.log(`===== 账号 开始执行 =====\n`);
-            for (i=0;i<3;i++){
+            for (i = 0; i < 3; i++) {
                 await main();  // 每日签到
             }
 
@@ -66,7 +66,6 @@ if (isGetCookie = typeof $request !== `undefined`) {
 
 // 开始签到
 async function main() {
-
 
 
     let opt = {
@@ -109,7 +108,7 @@ async function main() {
                 // {"code":"200","text":null,"data":{"continuousDay":2,"bonusContinuousDay":2,"bonusLeftDay":5,"notify":false,"basePoint":2,"bonusPoint":5,"popup":false},"pageLimit":null,"action":null}
 
                 if (data) {
-                    console.log("接口返回数据"+data)
+                    console.log("接口返回数据" + data)
                 } else {
                     $.log("服务器返回了空数据");
                 }
@@ -125,7 +124,7 @@ async function main() {
 // 获取数据
 function GetCookie() {
     $request.headers = ObjectKeys2LowerCase($request.headers);  // 将 headers 的所有 key 转换为小写以兼容各个代理 App
-    console.log($request.headers)
+    debug($request.headers)
     if ($request && $request.headers['qm-user-token']) {
         let bwcj_token = ""
         bwcj_token += `${$request.headers['qm-user-token']}`;

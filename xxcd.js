@@ -30,7 +30,7 @@ cron "17 7 * * *" script-path=https://raw.githubusercontent.com/shengetui/qx/mai
 hostname = gateway.starcharge.com
 
 [rewrite_local]
-^https:\/\/gateway\.starcharge\.com\/apph5\/xcxApiV2\/wechat\/starPoint\/sign url script-request-body https://raw.githubusercontent.com/shengetui/qx/main/xxcd.js
+^https:\/\/gateway\.starcharge\.com\/apph5\/xcxApiV2\/wechat\/starPoint\/sign url script-request-header https://raw.githubusercontent.com/shengetui/qx/main/xxcd.js
 
 [task_local]
 17 7 * * * https://raw.githubusercontent.com/shengetui/qx/main/xxcd.js, tag=星星充电, enabled=true

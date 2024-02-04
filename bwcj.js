@@ -37,7 +37,7 @@ if (isGetCookie = typeof $request !== `undefined`) {
         if (bwcjCookie) {
             console.log(`===== 账号 开始执行 =====\n`);
             for (i = 0; i < 3; i++) {
-                await main();  // 每日签到
+                await main();
             }
 
         } else {
@@ -93,15 +93,16 @@ async function main() {
             'Accept-Language': 'zh-CN,zh;q=0.9'
         },
 //body内容 每天定时改。activityId：活动id，keyWords：活动口令，appid：固定id
-        body: {
+        body:  `{
             "activityId": "960507796448645121",
             "keyWords": "龙年会友杯",
             "appid": "wxafec6f8422cb357b"
-        }
+        } `
     }
 
 
     return new Promise(resolve => {
+
         $.post(opt, async (err, resp, data) => {
             try {
                 err && $.log(err);

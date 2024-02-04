@@ -4,9 +4,9 @@ const $ = new Env('霸王茶几签到');
 
 
 $.is_debug = ($.isNode() ? process.env.IS_DEDUG : $.getdata('is_debug')) || 'true';
-const XXCD_KEY = 'BWCJ_KEY';
+const _KEY = 'BWCJ_KEY';
 const notify = $.isNode() ? require('./sendNotify') : '';
-let xxcdCookie = ($.isNode() ? process.env.HISENSE_CPS : $.getdata(XXCD_KEY)) || '';
+let _Cookie = ($.isNode() ? process.env.HISENSE_CPS : $.getdata(_KEY)) || '';
 let message = '';
 
     !(async () => {
@@ -45,7 +45,7 @@ async function main() {
             'Host': 'qmwebapi.qmai.cn',
             'Connection': 'keep-alive',
             'Content-Length': '93',
-            'Qm-User-Token': bwcjCookie,
+            'Qm-User-Token': _Cookie,
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 MicroMessenger/7.0.20.1781(0x6700143B) NetType/WIFI MiniProgramEnv/Windows WindowsWechat/WMPF WindowsWechat(0x63090923) XWEB/9053',
             'Content-Type': 'application/json',
             'Qm-From': 'wechat',

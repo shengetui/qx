@@ -125,6 +125,7 @@ async function main() {
 // 获取数据
 function GetCookie() {
     $request.headers = ObjectKeys2LowerCase($request.headers);  // 将 headers 的所有 key 转换为小写以兼容各个代理 App
+    console.log($request.headers)
     if ($request && $request.headers['qm-user-token']) {
         let bwcj_token = ""
         bwcj_token += `${$request.headers['qm-user-token']}`;

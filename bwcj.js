@@ -44,9 +44,9 @@
  hostname = qmwebapi.qmai.cn
 
  [Script]
- 星星充电Cookie = type=http-request,pattern=https:\/\/qmwebapi\.qmai\.cn\/web\/catering2-apiserver\/crm\/points-info,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/shengetui/qx/main/xxcd.js
+ 霸王茶几Cookie = type=http-request,pattern=https:\/\/qmwebapi\.qmai\.cn\/web\/catering2-apiserver\/crm\/points-info,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/shengetui/qx/main/bwcj.js
 
- 星星充电 = type=cron,cronexp=17 7 * * *,timeout=60,script-path=https://raw.githubusercontent.com/shengetui/qx/main/xxcd.js,script-update-interval=0
+ 霸王茶几 = type=cron,cronexp=17 7 * * 1,timeout=60,script-path=https://raw.githubusercontent.com/shengetui/qx/main/bwcj.js,script-update-interval=0
 
  ------------------ Loon 配置 ------------------
 

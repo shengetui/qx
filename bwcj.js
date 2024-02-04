@@ -7,7 +7,7 @@
  -------------- Quantumult X 配置 --------------
 
  [MITM]
- hostname = gateway.starcharge.com
+ hostname = qmwebapi.qmai.cn
 
  [rewrite_local]
  https:\/\/qmwebapi\.qmai\.cn\/web\/catering2-apiserver\/crm\/points-info url script-request-header https://raw.githubusercontent.com/shengetui/qx/main/bwcj.js
@@ -26,7 +26,7 @@
 
  http:
  mitm:
- - "gateway.starcharge.com"
+ - "qmwebapi.qmai.cn"
  script:
  - match: https:\/\/qmwebapi\.qmai\.cn\/web\/catering2-apiserver\/crm\/points-info
  name: 霸王茶几
@@ -38,12 +38,20 @@
  url: https://raw.githubusercontent.com/shengetui/qx/main/bwcj.js
  interval: 86400
 
+ ------------------ Surge 配置 -----------------
 
+ [MITM]
+ hostname = qmwebapi.qmai.cn
+
+ [Script]
+ 星星充电Cookie = type=http-request,pattern=https:\/\/qmwebapi\.qmai\.cn\/web\/catering2-apiserver\/crm\/points-info,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/shengetui/qx/main/xxcd.js
+
+ 星星充电 = type=cron,cronexp=17 7 * * *,timeout=60,script-path=https://raw.githubusercontent.com/shengetui/qx/main/xxcd.js,script-update-interval=0
 
  ------------------ Loon 配置 ------------------
 
  [MITM]
- hostname = gateway.starcharge.com
+ hostname = qmwebapi.qmai.cn
 
  [Script]
  https:\/\/qmwebapi\.qmai\.cn\/web\/catering2-apiserver\/crm\/points-info tag=霸王茶几Cookie, script-path=https://raw.githubusercontent.com/shengetui/qx/main/bwcj.js,requires-body=1

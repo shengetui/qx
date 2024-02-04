@@ -105,10 +105,9 @@ async function main() {
         $.post(opt, async (err, resp, data) => {
             try {
                 err && $.log(err);
-                // {"code":"200","text":null,"data":{"continuousDay":2,"bonusContinuousDay":2,"bonusLeftDay":5,"notify":false,"basePoint":2,"bonusPoint":5,"popup":false},"pageLimit":null,"action":null}
 
                 if (data) {
-                    console.log("接口返回数据" + data)
+                    $.log("接口返回数据" + data)
                 } else {
                     $.log("服务器返回了空数据");
                 }

@@ -78,8 +78,10 @@ if (isGetCookie = typeof $request !== `undefined`) {
 
         if (bwcjCookie) {
             console.log(`===== 账号 开始执行 =====\n`);
-            for (i = 0; i < 30; i++) {
-                await main();
+            for (i = 0; i < 1; i++) {
+                await main().then(r=>{
+                    console.log(r)
+                });
             }
 
         } else {

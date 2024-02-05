@@ -69,7 +69,7 @@ const BWCJ_KEY = 'BWCJ_KEY';
 const notify = $.isNode() ? require('./sendNotify') : '';
 let bwcjCookie = ($.isNode() ? process.env.HISENSE_CPS : $.getdata(BWCJ_KEY)) || '';
 let message = '';
-
+let shouldContinue = true;
 if (isGetCookie = typeof $request !== `undefined`) {
     GetCookie();
     $.done();
@@ -78,10 +78,12 @@ if (isGetCookie = typeof $request !== `undefined`) {
 
         if (bwcjCookie) {
             console.log(`===== 账号 开始执行 =====\n`);
-            for (i = 0; i < 1; i++) {
-                await main().then(r=>{
-                    console.log(r)
-                });
+            for (i = 0; i < 10; i++) {
+
+                if (!shouldContinue) {
+                    break; // 停止循环
+                }
+                await main()
             }
 
         } else {
@@ -154,6 +156,12 @@ async function main() {
 
                 if (data) {
                     $.log("接口返回数据" + data)
+                  var c =   JSON.parse(data)
+                    if (c.code===0){
+                        $.log(" 以抢到" )
+                        shouldContinue = false
+                    }
+                    return data
                 } else {
                     $.log("服务器返回了空数据");
                 }

@@ -157,10 +157,20 @@ async function main() {
                 if (data) {
                     $.log("接口返回数据" + data)
                   var c =   JSON.parse(data)
-                    if (c.code===0){
-                        $.log(" 以抢到" )
+                    //o 的时候是成功 ，1003101 是口令失败
+                    if (c.code===0|| c.code === 1003101){
+                        $.log(" 抢到" )
                         shouldContinue = false
                     }
+                    else if  (  c.code === 1003101){
+                        $.log(" 口令不对，终止循环" )
+                        shouldContinue = false
+                    }else if (c.code === 1003105){
+                        $.log(" 今日您领取福利次数已达上限啦，终止循环" )
+                        shouldContinue = false
+                    }
+
+
                     return data
                 } else {
                     $.log("服务器返回了空数据");

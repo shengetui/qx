@@ -138,7 +138,7 @@ async function main() {
         body:  `{
   
             "activityId": "960900759632576512",
-            "keyWords": "一杯伯牙绝弦",
+            "keyWords": "伯牙绝弦",
             "appid": "wxafec6f8422cb357b"
         } `
     }

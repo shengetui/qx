@@ -141,8 +141,8 @@ async function main() {
 //body内容 每天定时改。activityId：活动id，keyWords：活动口令，appid：固定id
         body:  `{
   
-            "activityId": "960900759632576512",
-            "keyWords": "伯牙绝弦",
+            "activityId": "961261315598188544",
+            "keyWords": "萃",
             "appid": "wxafec6f8422cb357b"
         } `
     }

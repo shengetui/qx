@@ -59,7 +59,7 @@
  cron "17 7 * * 1" script-path=https://raw.githubusercontent.com/shengetui/qx/main/bwcj.js,tag = 霸王茶几,enable=true
  */
 
- 
+
 
 const $ = new Env('霸王茶几');
 
@@ -69,7 +69,7 @@ const BWCJ_KEY = 'BWCJ_KEY';
 const notify = $.isNode() ? require('./sendNotify') : '';
 let bwcjCookie = ($.isNode() ? process.env.HISENSE_CPS : $.getdata(BWCJ_KEY)) || '';
 let message = '';
-
+let shouldContinue = true;
 if (isGetCookie = typeof $request !== `undefined`) {
     GetCookie();
     $.done();
@@ -78,8 +78,12 @@ if (isGetCookie = typeof $request !== `undefined`) {
 
         if (bwcjCookie) {
             console.log(`===== 账号 开始执行 =====\n`);
-            for (i = 0; i < 30; i++) {
-                await main();
+            for (i = 0; i < 10; i++) {
+
+                if (!shouldContinue) {
+                    break; // 停止循环
+                }
+                await main()
             }
 
         } else {
@@ -137,8 +141,8 @@ async function main() {
 //body内容 每天定时改。activityId：活动id，keyWords：活动口令，appid：固定id
         body:  `{
   
-            "activityId": "960900759632576512",
-            "keyWords": "一杯伯牙绝弦",
+            "activityId": "961261315598188544",
+            "keyWords": "传承千年，纵横万里",
             "appid": "wxafec6f8422cb357b"
         } `
     }
@@ -152,6 +156,22 @@ async function main() {
 
                 if (data) {
                     $.log("接口返回数据" + data)
+                    var c =   JSON.parse(data)
+                    //o 的时候是成功 ，1003101 是口令失败
+                    if (c.code===0|| c.code === 1003101){
+                        $.log(" 抢到" )
+                        shouldContinue = false
+                    }
+                    else if  (  c.code === 1003101){
+                        $.log(" 口令不对，终止循环" )
+                        shouldContinue = false
+                    }else if (c.code === 1003105){
+                        $.log(" 今日您领取福利次数已达上限啦，终止循环" )
+                        shouldContinue = false
+                    }
+
+
+                    return data
                 } else {
                     $.log("服务器返回了空数据");
                 }

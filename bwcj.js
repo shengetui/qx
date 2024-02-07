@@ -78,9 +78,9 @@ if (isGetCookie = typeof $request !== `undefined`) {
 
         if (bwcjCookie) {
             console.log(`===== 账号 开始执行 =====\n`);
-            //风控规则，x秒内超过x个请求返回错误页面
-            for (i = 0; i < 3; i++) {
-
+            //风控规则，x秒内超过4个请求返回错误页面
+            for (i = 0; i < 5; i++) {
+     await $.wait(100 * 1);  // 等待 0.1秒
                 if (!shouldContinue) {
                     break; // 停止循环
                 }

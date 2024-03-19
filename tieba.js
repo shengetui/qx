@@ -117,6 +117,7 @@ function debug(content) {
             console.log(start + content + end);
         } else if (typeof content == "object") {
             console.log(start +  JSON.stringify(content)   + end);
+            $notify("aaaaaa",  JSON.stringify(content))
         }
 
 }

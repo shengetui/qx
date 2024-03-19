@@ -1,7 +1,7 @@
 /** test
  * 脚本名称：霸王茶几 领取
  * 脚本作者：
- * 更新日期：2024-02-04
+ * 更新日期：2024-02-08
  * 仓库地址：https://github.com/shengetui/qx
 
  -------------- Quantumult X 配置 --------------
@@ -78,9 +78,9 @@ if (isGetCookie = typeof $request !== `undefined`) {
 
         if (bwcjCookie) {
             console.log(`===== 账号 开始执行 =====\n`);
-            //风控规则，x秒内超过x个请求返回错误页面
-            for (i = 0; i < 3; i++) {
-
+            //风控规则，x秒内超过4个请求返回错误页面
+            for (i = 0; i < 5; i++) {
+     await $.wait(100 * 1);  // 等待 0.1秒
                 if (!shouldContinue) {
                     break; // 停止循环
                 }
@@ -142,8 +142,8 @@ async function main() {
 //body内容 每天定时改。activityId：活动id，keyWords：活动口令，appid：固定id
         body:  `{
   
-            "activityId": "961261315598188544",
-            "keyWords": "萃",
+            "activityId": "962034615110811649",
+            "keyWords": "以茶会友以友为龙",
             "appid": "wxafec6f8422cb357b"
         } `
     }

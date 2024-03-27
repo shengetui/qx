@@ -72,7 +72,7 @@ script-providers:
 const $ = new Env('建行生活');
 const notify = $.isNode() ? require('./sendNotify') : '';
 let AppId = '1472477795', giftMap = { "1": "打车", "2": "外卖", "3": "骑行" }, message = '';
-let giftType = ($.isNode() ? process.env.JHSH_GIFT : $.getdata('JHSH_GIFT')) || '1';  // 奖励类型，默认领取'外卖'券
+let giftType = ($.isNode() ? process.env.JHSH_GIFT : $.getdata('JHSH_GIFT')) || '2';  // 奖励类型，默认领取'外卖'券
 let bodyStr = ($.isNode() ? process.env.JHSH_BODY : $.getdata('JHSH_BODY')) || '';  // 签到所需的 body
 let autoLoginInfo = ($.isNode() ? process.env.JHSH_LOGIN_INFO : $.getdata('JHSH_LOGIN_INFO')) || '';  // 刷新 session 所需的数据
 let AppVersion = ($.isNode() ? process.env.JHSH_VERSION : $.getdata('JHSH_VERSION')) || '2.1.5.002';  // 最新版本号，获取失败时使用

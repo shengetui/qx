@@ -7,6 +7,8 @@
  * 更新时间：2023-10-30  修复 Cokie 失效问题，增加骑行券类型参数，感谢 Sliverkiss、𝘠𝘶𝘩𝘦𝘯𝘨、苍井灰灰 大佬提供帮助。
  * 更新时间：2024-01-30  修复 Stash 代理工具无法获取 mbc-user-agent 参数问题
  * 更新时间：2024-01-31  增加借记卡用户自动断签功能，非建行信用卡用户连续签到 7 天优惠力度较低(满39元减10元)
+ * 更新时间：2024-02-18  修复默认断签问题
+ * 更新时间：2024-02-21  修复变量作用域导致无法自动领取签到奖励问题
 /*
 
 https://raw.githubusercontent.com/FoKit/Scripts/main/boxjs/fokit.boxjs.json
@@ -74,7 +76,6 @@ let giftType = ($.isNode() ? process.env.JHSH_GIFT : $.getdata('JHSH_GIFT')) || 
 let bodyStr = ($.isNode() ? process.env.JHSH_BODY : $.getdata('JHSH_BODY')) || '';  // 签到所需的 body
 let autoLoginInfo = ($.isNode() ? process.env.JHSH_LOGIN_INFO : $.getdata('JHSH_LOGIN_INFO')) || '';  // 刷新 session 所需的数据
 let AppVersion = ($.isNode() ? process.env.JHSH_VERSION : $.getdata('JHSH_VERSION')) || '2.1.5.002';  // 最新版本号，获取失败时使用
-let skipDay = ($.isNode() ? process.env.JHSH_SKIPDAY : $.getdata('JHSH_SKIPDAY')) || '';  // 下个断签日 (适用于借记卡用户)
 let bodyArr = bodyStr ? bodyStr.split("|") : [];
 let bodyArr2 = autoLoginInfo ? autoLoginInfo.split("|") : [];
 $.is_debug = ($.isNode() ? process.env.IS_DEDUG : $.getdata('is_debug')) || 'false';
@@ -89,8 +90,8 @@ if (isGetCookie = typeof $request !== `undefined`) {
       return;
     }
     const date = new Date();
-    let day = date.getDay();
-    const weekMap = {
+    $.whichDay = date.getDay();
+    $.weekMap = {
       0: "星期天",
       1: "星期一",
       2: "星期二",
@@ -99,12 +100,7 @@ if (isGetCookie = typeof $request !== `undefined`) {
       5: "星期五",
       6: "星期六",
     };
-    if (day === skipDay) {
-      let text = `今天是断签日[${weekMap[day]}], 跳过签到任务。`
-      console.log(text);
-      message += text;
-      return;
-    }
+  
     console.log(`\n共有[${bodyArr.length}]个建行生活账号\n`);
     await getLatestVersion();  // 获取版本信息
     for (let i = 0; i < bodyArr.length; i++) {
@@ -146,7 +142,7 @@ if (isGetCookie = typeof $request !== `undefined`) {
                 if ($.isGetGift) break;
               }
             }
-          }
+          };
           if (!$.isGetGift) {
             $.getGiftMsg = `请打开app查看优惠券到账情况。\n`;
           }
@@ -273,18 +269,12 @@ async function main() {
           debug(data);
           data = JSON.parse(data);
           let text = '';
-          if (data.errCode === 0) {
+          if (data.errCode == 0) {
             text = `🎉 账号 [${$.info?.USR_TEL ? hideSensitiveData($.info?.USR_TEL, 3, 4) : $.index}] 签到成功`;
             console.log(text);
             message += text;
-            if (data?.data?.IS_AWARD === 1) {
-              // 更新自动断签日
-              if (skipDay >= 0) {
-                // 当 day 等于 6 时，下一断签日修正为 0，否则 day + 1
-                day = day === 6 ? 0 : day + 1;
-                $.setdata(String(day), 'JHSH_SKIPDAY');
-                console.log(`♻️ 已更新断签配置：明天(${weekMap[day]})将会断签`);
-              }
+            if (data?.data?.IS_AWARD == 1) {
+         
               $.GIFT_BAG = data?.data?.GIFT_BAG;
               $.GIFT_BAG.forEach(item => {
                 let body = { "couponId": item.couponId, "nodeDay": item.nodeDay, "couponType": item.couponType, "dccpBscInfSn": item.dccpBscInfSn };
@@ -331,7 +321,7 @@ async function getGift() {
   let opt = {
     url: `https://yunbusiness.ccb.com/clp_coupon/txCtrl?txcode=A3341C082`,
     headers: {
-      "MID": $.info?.MID,
+      "Mid": $.info?.MID,
       "Content-Type": "application/json;charset=utf-8",
       "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 16_1_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148/CloudMercWebView/UnionPay/1.0 CCBLoongPay",
       "Accept": "application/json,text/javascript,*/*"
@@ -386,7 +376,7 @@ async function getLatestVersion() {
             console.log(`版本信息: ${trackName} ${version}\nBundleId: ${bundleId} \n更新时间: ${currentVersionReleaseDate}`);
           } catch (e) {
             $.log(e);
-          }
+          };
         } else {
           console.log(`版本信息获取失败\n`);
         }
@@ -402,8 +392,8 @@ async function getLatestVersion() {
 
 /**
  * 对象属性转小写
- * @param {*} obj
- * @returns
+ * @param {object} obj - 传入 $request.headers
+ * @returns {object} 返回转换后的对象
  */
 function ObjectKeys2LowerCase(obj) {
   const _lower = Object.fromEntries(Object.entries(obj).map(([k, v]) => [k.toLowerCase(), v]))

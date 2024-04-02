@@ -331,16 +331,14 @@ let opt = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 MicroMessenger/7.0.20.1781(0x6700143B) NetType/WIFI MiniProgramEnv/Windows WindowsWechat/WMPF WindowsWechat(0x63090923) XWEB/9053',
         'Content-Type': 'application/json',
         'Qm-From': 'wechat',
-        'Accept': 'v=1.0',
+         
         //不知道啥含义
         'qm-trace-store-id': '49006',
         'xweb_xhr': '1',
         'Qm-From-Type': 'catering',
         'Sec-Fetch-Site': 'cross-site',
         'Sec-Fetch-Mode': 'cors',
-        'Sec-Fetch-Dest': 'empty', 
-        'Accept-Encoding': 'gzip, deflate, br',
-        'Accept-Language': 'zh-CN,zh;q=0.9'
+        'Sec-Fetch-Dest': 'empty'
     },
 //body内容 每天定时改。activityId：活动id，keyWords：活动口令，appid：固定id
     body:  `{

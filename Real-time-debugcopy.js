@@ -18,13 +18,10 @@
 		});
 		setTimeout(e, 100);
 	});
-	if (_r) {
+ 
 		console.log("🌐 Run local network script...");
 		eval(_r);
-	} else {
-		console.log("⚠️ Run cache script...");
-		eval(_$.read('Real-time-debug'))
-	}
+ 
 
 	function nobyda() {
 		const isSurge = typeof $httpClient != "undefined";

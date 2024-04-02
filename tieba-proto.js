@@ -413,7 +413,7 @@ if (url.includes("frs/page")) {
     //body内容 每天定时改。activityId：活动id，keyWords：活动口令，appid：固定id
         body:  `{
     
-            "employee":  `+JSON.stringify( personalizedResIdlObj) +`
+            "employee":  `+$.toStr(personalizedResIdlObj) +`
         } `
     }
     

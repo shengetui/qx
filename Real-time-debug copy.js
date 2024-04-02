@@ -9,7 +9,7 @@
 	const _$ = new nobyda();
 	const _r = await new Promise(e => {
 		_$.get({
-			url: 'http://192.168.1.123:5500/tieba-proto.js' // LAN backend address
+			url: 'http://192.168.1.123:5500/tieba-json.js' // LAN backend address
 		}, (t, c, o) => {
 			if (c && c.status == 200 && o) {
 				_$.write(o, 'Real-time-debug');

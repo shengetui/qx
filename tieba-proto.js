@@ -320,7 +320,7 @@ const $ = new Env('贴吧');
 
 
 let opt = {
-    url: `http://localhost:8812/test/`,
+    url: `http://192.168.1.123:8812/test/`,
 
     method: "POST",
     headers: {

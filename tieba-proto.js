@@ -333,7 +333,6 @@ const $ = new Env('贴吧');
 
 
 
-
 console.log(`2023-12-30`);
 if($request.method !== 'POST'){
     $notification.post('贴吧proto去广告脚本错误', "请求方法不为POST:", url);
@@ -387,6 +386,7 @@ if (url.includes("frs/page")) {
 
 
 
+
     let opt = {
         url: `http://192.168.1.123:8812/test/`,
     
@@ -402,16 +402,18 @@ if (url.includes("frs/page")) {
              
             //不知道啥含义
             'qm-trace-store-id': '49006',
-            'xweb_xhr': '1',
+        
             'Qm-From-Type': 'catering',
             'Sec-Fetch-Site': 'cross-site',
             'Sec-Fetch-Mode': 'cors',
-            'Sec-Fetch-Dest': 'empty'
+            'Sec-Fetch-Dest': 'empty', 
+            'Accept-Encoding': 'gzip, deflate, br',
+            'Accept-Language': 'zh-CN,zh;q=0.9'
         },
     //body内容 每天定时改。activityId：活动id，keyWords：活动口令，appid：固定id
         body:  `{
     
-            "employee":  `+ JSON.stringify(bodypersonalizedResIdlObj) +`
+            "employee":  `+JSON.stringify( personalizedResIdlObj) +`
         } `
     }
     
@@ -419,8 +421,26 @@ if (url.includes("frs/page")) {
      
     
         $.post(opt, async (err, resp, data) => {
+            try {
+                err && $.log(err);
+    
+                if (data) {
+                    $.log("接口返回数据" + data)
+               
+    
+    
+                
+                } else {
+                    $.log("服务器返回了空数据");
+                }
+            } catch (error) {
+                $.log(error);
+            } finally {
+                resolve();
+            }
         })
      
+
 
     personalizedResIdlObj.data.threadList = removeLive(personalizedResIdlObj.data.threadList);
     if(personalizedResIdlObj.data.liveAnswer){

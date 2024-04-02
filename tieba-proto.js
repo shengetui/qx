@@ -438,6 +438,8 @@ function removeLive(threadList) {
             if (item?.forumInfo?.isLiked === 0 ) {
 			 
                 item.forumInfo.isLiked = 1
+                item.forumInfo.recommendTip = "-------"
+
                 console.log("isLiked设为为1")
                 }
             return true;

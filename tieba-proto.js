@@ -132,6 +132,10 @@ function removeLive(threadList) {
                 console.log('去除推荐的视频');
                 return false;
             }
+            if (item?.forumInfo?.isLiked ) {
+			 
+                item.forumInfo.isLiked = 1
+                }
             return true;
         });
         if(beforeLength === newThreadList.length){

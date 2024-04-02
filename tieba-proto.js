@@ -427,6 +427,10 @@ function removeLive(threadList) {
                 console.log('去除推荐的直播帖子');
                 return false;
             }
+            if(item.videoInfo){
+                console.log('去除推荐的视频');
+                return false;
+            }
             return true;
         });
         if(beforeLength === newThreadList.length){

@@ -12,9 +12,9 @@ const method = $request.method;
 const isQuanX = typeof $task !== "undefined";
 const binaryBody = isQuanX ? new Uint8Array($response.bodyBytes) : $response.body;
 let body;
-
+ 
 $prefs.setValueForKey(binaryBody, "aaaa");
-$notify('贴吧proto', '', "");
+$notify('贴吧proto', '', $prefs.valueForKey("aaaa"));
 console.log(`2023-12-30`);
 if($request.method !== 'POST'){
     $notification.post('贴吧proto去广告脚本错误', "请求方法不为POST:", url);

@@ -242,7 +242,16 @@ function removeLive(threadList) {
             if (item.ala_info) {
                 console.log('去除推荐的直播帖子');
                 return false;
+            }  
+            if(item.videoInfo){
+                console.log('去除推荐的视频');
+                return false;
             }
+            if (item?.forumInfo?.isLiked=0 ) {
+			 
+                item.forumInfo.isLiked = 1
+                console.log("isLiked设为为1")
+                }
             return true;
         });
         if (beforeLength === newThreadList.length) {

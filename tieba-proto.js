@@ -14,7 +14,7 @@ const isQuanX = typeof $task !== "undefined";
 const binaryBody = isQuanX ? new Uint8Array($response.bodyBytes) : $response.body;
 let body;
 
-const $ = new Env('贴吧');
+ 
 
 
 

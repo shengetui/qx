@@ -3,7 +3,7 @@ const method = $request.method;
 const postMethod = "POST";
 const notifyTitle = "贴吧json脚本错误";
 console.log(`贴吧json-2023.06.12.2`);
-
+const $ = new Env('贴吧json');
 let body = JSON.parse($response.body);
 postData(body,url)
 

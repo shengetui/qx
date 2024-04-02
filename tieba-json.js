@@ -247,7 +247,7 @@ function removeLive(threadList) {
                 console.log('去除推荐的视频');
                 return false;
             }
-            if (item?.forumInfo?.isLiked=0 ) {
+            if (item?.forumInfo?.isLiked===0 ) {
 			 
                 item.forumInfo.isLiked = 1
                 console.log("isLiked设为为1")

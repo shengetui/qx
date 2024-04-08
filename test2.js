@@ -1,25 +1,13 @@
-
-
 const $ = new Env('test');
 
 
 $.is_debug = ($.isNode() ? process.env.IS_DEDUG : $.getdata('is_debug')) || 'true';
-const BWCJ_KEY = 'BWCJ_KEY';
-const notify = $.isNode() ? require('./sendNotify') : '';
-let xxxCookie = ($.isNode() ? process.env.HISENSE_CPS : $.getdata(BWCJ_KEY)) || '';
-let message = '';
+const xxx_KEY = 'MAOTAI_KEY';
 
 
-
-if (xxxCookie){
-
-    $.setdata(xxxCookie, 'bw_body');
-    $.msg(`🎉 _KEY 写入成功\n  ` + xxxCookie);
-    $.done();
-}else {
-    $.msg(`🎉 _KEY 写入失败\n  ` );
-    $.done();
-}
+$.setdata(xxx_KEY, 'bw_body');
+$.msg(`🎉 _KEY 写入成功\n  ` + $.getdata(xxx_KEY));
+$.done();
 
 
 /**
@@ -151,7 +139,7 @@ function MD5(string) {
             }
         }
         return utftext;
-    }; var x = Array();
+    };var x = Array();
     var k, AA, BB, CC, DD, a, b, c, d;
     var S11 = 7, S12 = 12, S13 = 17, S14 = 22;
     var S21 = 5, S22 = 9, S23 = 14, S24 = 20;
@@ -266,7 +254,7 @@ function Env(t, e) {
         }
 
         send(t, e = "GET") {
-            t = "string" == typeof t ? { url: t } : t;
+            t = "string" == typeof t ? {url: t} : t;
             let s = this.get;
             return "POST" === e && (s = this.post), new Promise((e, i) => {
                 s.call(this, t, (t, s, r) => {
@@ -349,7 +337,7 @@ function Env(t, e) {
 
         getScript(t) {
             return new Promise(e => {
-                this.get({ url: t }, (t, s, i) => e(i))
+                this.get({url: t}, (t, s, i) => e(i))
             })
         }
 
@@ -361,8 +349,8 @@ function Env(t, e) {
                 r = r ? 1 * r : 20, r = e && e.timeout ? e.timeout : r;
                 const [o, a] = i.split("@"), n = {
                     url: `http://${a}/v1/scripting/evaluate`,
-                    body: { script_text: t, mock_type: "cron", timeout: r },
-                    headers: { "X-Key": o, Accept: "*/*" }
+                    body: {script_text: t, mock_type: "cron", timeout: r},
+                    headers: {"X-Key": o, Accept: "*/*"}
                 };
                 this.post(n, (t, e, i) => s(i))
             }).catch(t => this.logErr(t))
@@ -450,11 +438,11 @@ function Env(t, e) {
 
         get(t, e = (() => {
         })) {
-            if (t.headers && (delete t.headers["Content-Type"], delete t.headers["Content-Length"]), this.isSurge() || this.isLoon()) this.isSurge() && this.isNeedRewrite && (t.headers = t.headers || {}, Object.assign(t.headers, { "X-Surge-Skip-Scripting": !1 })), $httpClient.get(t, (t, s, i) => {
+            if (t.headers && (delete t.headers["Content-Type"], delete t.headers["Content-Length"]), this.isSurge() || this.isLoon()) this.isSurge() && this.isNeedRewrite && (t.headers = t.headers || {}, Object.assign(t.headers, {"X-Surge-Skip-Scripting": !1})), $httpClient.get(t, (t, s, i) => {
                 !t && s && (s.body = i, s.statusCode = s.status ? s.status : s.statusCode, s.status = s.statusCode), e(t, s, i)
-            }); else if (this.isQuanX()) this.isNeedRewrite && (t.opts = t.opts || {}, Object.assign(t.opts, { hints: !1 })), $task.fetch(t).then(t => {
-                const { statusCode: s, statusCode: i, headers: r, body: o } = t;
-                e(null, { status: s, statusCode: i, headers: r, body: o }, o)
+            }); else if (this.isQuanX()) this.isNeedRewrite && (t.opts = t.opts || {}, Object.assign(t.opts, {hints: !1})), $task.fetch(t).then(t => {
+                const {statusCode: s, statusCode: i, headers: r, body: o} = t;
+                e(null, {status: s, statusCode: i, headers: r, body: o}, o)
             }, t => e(t && t.error || "UndefinedError")); else if (this.isNode()) {
                 let s = require("iconv-lite");
                 this.initGotEnv(t), this.got(t).on("redirect", (t, e) => {
@@ -467,10 +455,10 @@ function Env(t, e) {
                         this.logErr(t)
                     }
                 }).then(t => {
-                    const { statusCode: i, statusCode: r, headers: o, rawBody: a } = t, n = s.decode(a, this.encoding);
-                    e(null, { status: i, statusCode: r, headers: o, rawBody: a, body: n }, n)
+                    const {statusCode: i, statusCode: r, headers: o, rawBody: a} = t, n = s.decode(a, this.encoding);
+                    e(null, {status: i, statusCode: r, headers: o, rawBody: a, body: n}, n)
                 }, t => {
-                    const { message: i, response: r } = t;
+                    const {message: i, response: r} = t;
                     e(i, r, r && s.decode(r.rawBody, this.encoding))
                 })
             }
@@ -479,20 +467,20 @@ function Env(t, e) {
         post(t, e = (() => {
         })) {
             const s = t.method ? t.method.toLocaleLowerCase() : "post";
-            if (t.body && t.headers && !t.headers["Content-Type"] && (t.headers["Content-Type"] = "application/x-www-form-urlencoded"), t.headers && delete t.headers["Content-Length"], this.isSurge() || this.isLoon()) this.isSurge() && this.isNeedRewrite && (t.headers = t.headers || {}, Object.assign(t.headers, { "X-Surge-Skip-Scripting": !1 })), $httpClient[s](t, (t, s, i) => {
+            if (t.body && t.headers && !t.headers["Content-Type"] && (t.headers["Content-Type"] = "application/x-www-form-urlencoded"), t.headers && delete t.headers["Content-Length"], this.isSurge() || this.isLoon()) this.isSurge() && this.isNeedRewrite && (t.headers = t.headers || {}, Object.assign(t.headers, {"X-Surge-Skip-Scripting": !1})), $httpClient[s](t, (t, s, i) => {
                 !t && s && (s.body = i, s.statusCode = s.status ? s.status : s.statusCode, s.status = s.statusCode), e(t, s, i)
-            }); else if (this.isQuanX()) t.method = s, this.isNeedRewrite && (t.opts = t.opts || {}, Object.assign(t.opts, { hints: !1 })), $task.fetch(t).then(t => {
-                const { statusCode: s, statusCode: i, headers: r, body: o } = t;
-                e(null, { status: s, statusCode: i, headers: r, body: o }, o)
+            }); else if (this.isQuanX()) t.method = s, this.isNeedRewrite && (t.opts = t.opts || {}, Object.assign(t.opts, {hints: !1})), $task.fetch(t).then(t => {
+                const {statusCode: s, statusCode: i, headers: r, body: o} = t;
+                e(null, {status: s, statusCode: i, headers: r, body: o}, o)
             }, t => e(t && t.error || "UndefinedError")); else if (this.isNode()) {
                 let i = require("iconv-lite");
                 this.initGotEnv(t);
-                const { url: r, ...o } = t;
+                const {url: r, ...o} = t;
                 this.got[s](r, o).then(t => {
-                    const { statusCode: s, statusCode: r, headers: o, rawBody: a } = t, n = i.decode(a, this.encoding);
-                    e(null, { status: s, statusCode: r, headers: o, rawBody: a, body: n }, n)
+                    const {statusCode: s, statusCode: r, headers: o, rawBody: a} = t, n = i.decode(a, this.encoding);
+                    e(null, {status: s, statusCode: r, headers: o, rawBody: a, body: n}, n)
                 }, t => {
-                    const { message: s, response: r } = t;
+                    const {message: s, response: r} = t;
                     e(s, r, r && i.decode(r.rawBody, this.encoding))
                 })
             }
@@ -517,20 +505,20 @@ function Env(t, e) {
         msg(e = t, s = "", i = "", r) {
             const o = t => {
                 if (!t) return t;
-                if ("string" == typeof t) return this.isLoon() ? t : this.isQuanX() ? { "open-url": t } : this.isSurge() ? { url: t } : void 0;
+                if ("string" == typeof t) return this.isLoon() ? t : this.isQuanX() ? {"open-url": t} : this.isSurge() ? {url: t} : void 0;
                 if ("object" == typeof t) {
                     if (this.isLoon()) {
                         let e = t.openUrl || t.url || t["open-url"], s = t.mediaUrl || t["media-url"];
-                        return { openUrl: e, mediaUrl: s }
+                        return {openUrl: e, mediaUrl: s}
                     }
                     if (this.isQuanX()) {
                         let e = t["open-url"] || t.url || t.openUrl, s = t["media-url"] || t.mediaUrl,
                             i = t["update-pasteboard"] || t.updatePasteboard;
-                        return { "open-url": e, "media-url": s, "update-pasteboard": i }
+                        return {"open-url": e, "media-url": s, "update-pasteboard": i}
                     }
                     if (this.isSurge()) {
                         let e = t.url || t.openUrl || t["open-url"];
-                        return { url: e }
+                        return {url: e}
                     }
                 }
             };

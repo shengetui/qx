@@ -16,7 +16,7 @@ let cd =     {
 }
 $.is_debug = ($.isNode() ? process.env.IS_DEDUG : $.getdata('is_debug')) || 'true';
 const xxx_KEY = 'MAOTAI_KEY';
-
+cd = JSON.stringify(cd)
 
 $.setdata(cd,xxx_KEY);
 $.msg(`🎉 _KEY 写入成功\n  ` + $.getdata(xxx_KEY));

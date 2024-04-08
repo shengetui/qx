@@ -1,11 +1,24 @@
 const $ = new Env('test');
 
-
+let cd =     {
+    "city": "济南市",
+    "lat": "36.676095",
+    "lng": "117.134833",
+    "mobile": "18369933142",
+    "province": "山东省",
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJtdCIsImV4cCI6MTcxMzQxODU4MSwidXNlcklkIjoxMDY4MDk0MzI1LCJkZXZpY2VJZCI6IjJGMjA3NUQwLUI2NkMtNDI4Ny1BOTAzLURCRkY2MzU4MzQyQSIsImlhdCI6MTcxMDgyNjU4MX0.6jr9477IAWDMzjU9lXxlR1pIGKsxM60wpeAhLj_dP-I",
+    "userid": "1068094325",
+    "reserve_rule": 0,
+    "item_codes": [
+        "10941",
+        "10942"
+    ]
+}
 $.is_debug = ($.isNode() ? process.env.IS_DEDUG : $.getdata('is_debug')) || 'true';
 const xxx_KEY = 'MAOTAI_KEY';
 
 
-$.setdata(xxx_KEY, 'bw_body');
+$.setdata(cd,xxx_KEY);
 $.msg(`🎉 _KEY 写入成功\n  ` + $.getdata(xxx_KEY));
 $.done();
 

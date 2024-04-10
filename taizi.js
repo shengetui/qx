@@ -1919,18 +1919,21 @@ async function actParams(shopId, itemId) {
                         data = JSON.parse(data)
                         const {code, message} = data;
                         if (code === 401) {
+                            $.msg(`🎉 ${$.name},  token失效, 请重新抓包获取`  );
                             this.msg.push({
                                 name: '- 申购结果',
                                 value: 'token失效, 请重新抓包获取'
                             });
                             return this.msg
                         } else if (code !== 2000) {
+                            $.msg(`🎉 ${$.name},  申购结果`+message  );
                             this.msg.push({
                                 name: '- 申购结果',
                                 value: message
                             });
                             return this.msg
                         } else {
+                            $.msg(`🎉 ${$.name},  申购结果`+data.successDesc  );
                             this.msg.push({
                                 name: '- 申购结果',
                                 value: data.successDesc
@@ -1984,12 +1987,15 @@ async function actParams(shopId, itemId) {
 
                         const {code, message} = data;
                         if (code === 401) {
+                            $.msg("token失效, 请重新抓包获取")
+                            $.msg(`🎉 ${$.name},  token失效, 请重新抓包获取`  );
                             this.msg.push({
                                 name: '- 申购结果',
                                 value: 'token失效, 请重新抓包获取'
                             });
                             return this.msg
                         } else {
+                            $.msg(`🎉 ${$.name},  耐力`+message  );
                             this.msg.push({
                                 name: '- 耐力',
                                 value: message
@@ -2082,16 +2088,16 @@ async function actParams(shopId, itemId) {
             }
 
         } catch (e) {
-
+            $.msg(`❌ ${$.name}, 失败! 原因: ${e}!`)
             this.msg.push({
                 name: '- 申购结果',
                 value: e
             });
         }
 
-        $.msg($.name, '', JSON.stringify(this.msg,""," "));
+        // $.msg($.name, '', JSON.stringify(this.msg,""," "));
 
-
+console.log(JSON.stringify(this.msg,""," "))
         return this.msg;
     }
 (async function() { // 立即运行的匿名异步函数
@@ -2107,25 +2113,6 @@ async function actParams(shopId, itemId) {
     $.done(); //抢购完成后调用Surge、QX内部特有的函数, 用于退出脚本执行
 })();
 
-/*for (const i of c) {
-    console.log(i);
-    debug(i)
-
-    !(async () => {
-          constructor1(i)
-        await  main();
-
-    })()
-        .catch((e) => {
-            $.msg('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
-        })
-        .finally(() => {
-            $.done();
-        })
-
-
-    $.done();
-}*/
 
 
 function debug(content, title = "debug") {

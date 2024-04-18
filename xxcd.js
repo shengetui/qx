@@ -151,11 +151,14 @@ async function main() {
 
                 if (data) {
 
+
                     $.message = '';
                     let result = JSON.parse(data);
                     if (result?.code === "200") {
                         $.continuousDay = result.data.continuousDay;
                         $.message += `签到成功，连续签到 ${$.continuousDay} 天 🎉`;
+                    }else {
+                        $.message += `请尝试重新获取token`;
                     }
                 } else {
                     $.log("服务器返回了空数据");

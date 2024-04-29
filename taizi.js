@@ -1596,7 +1596,7 @@ Content-Type: application/json
 MT-Network-Type: WIFI
 MT-Token: 1
 MT-Info: 028e7f96f6369cafe1d105579c5b9377
-MT-Device-ID: 2F2075D0-B66C-4287-A903-DBFF6358342A
+MT-Device-ID: C638FDB7-316F-4ABF-966A-B384F9D020A4
 MT-Bundle-ID: com.moutai.mall
 Accept-Language: en-CN;q=1, zh-Hans-CN;q=0.9
 MT-Request-ID: 167560018873318465
@@ -1914,7 +1914,11 @@ async function actParams(shopId, itemId) {
             $.post(opt, async (err, resp, data) => {
                 try {
                     err && $.log(err);
-
+ 
+debug(err)
+debug(resp)
+debug(data)
+$.msg(`🎉 ${$.name}`,'',data  );
                     if (data) {
                         data = JSON.parse(data)
                         const {code, message} = data;
@@ -1926,14 +1930,14 @@ async function actParams(shopId, itemId) {
                             });
                             return this.msg
                         } else if (code !== 2000) {
-                            $.msg(`🎉 ${$.name},  申购结果`+message  );
+                     
                             this.msg.push({
                                 name: '- 申购结果',
                                 value: message
                             });
                             return this.msg
                         } else {
-                            $.msg(`🎉 ${$.name},  申购结果`+data.successDesc  );
+           
                             this.msg.push({
                                 name: '- 申购结果',
                                 value: data.successDesc
@@ -1995,7 +1999,7 @@ async function actParams(shopId, itemId) {
                             });
                             return this.msg
                         } else {
-                            $.msg(`🎉 ${$.name},  耐力`+message  );
+                    
                             this.msg.push({
                                 name: '- 耐力',
                                 value: message

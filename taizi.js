@@ -1940,7 +1940,7 @@ $.msg(`🎉 ${$.name}`,'',data  );
            
                             this.msg.push({
                                 name: '- 申购结果',
-                                value: data.successDesc
+                                value: data.data.successDesc
                             });
                             return this.msg
                         }

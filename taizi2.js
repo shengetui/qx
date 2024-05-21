@@ -1807,7 +1807,7 @@ function maxShop(city, itemCode, pCMap, province, shops) {
         return maxShopId;
     }
 
-     async function distanceShop(itemCode, shops, sourceData, lat = '28.499562', lng = '102.182324') {
+     async function distanceShop(itemCode, shops, sourceData, lat , lng ) {
 
 
         const tempList = [];
@@ -1832,8 +1832,8 @@ function maxShop(city, itemCode, pCMap, province, shops) {
         itemCode,
         pCMap,
         sourceData,
-        lat = '29.83826',
-        lng = '102.182324',
+        lat ,
+        lng ,
         reserveRule = 0
     ) {
 

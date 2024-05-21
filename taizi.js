@@ -5,7 +5,20 @@
 
 // import crypto from 'crypto' ;
 
-
+// CCCC={"city":"xxx",
+// "lat":"xxx",
+// "lng":"xxx",
+// "mobile":"xxx",
+// "province":"xx省",
+// "token":"xx.xx.xxx",
+// "userid":"xx",
+// "version":"1.6.5",
+// "k":"xx",
+// "requestId":"xx",
+// "deviceId":"xx",
+// "info":"xx",
+// "reserve_rule":0,
+// "item_codes":["10941","10942"]}
 /*import axios from 'axios';
 
 import fetch from 'node-fetch';*/
@@ -1559,35 +1572,35 @@ function  constructor1(checkItem) {
         const AES_IV = '2018534749963515';
         this.encrypt = new Encrypt(AES_KEY, AES_IV);
 
-        this.mtVersion = '1.6.2';
+        this.mtVersion = MAOTAI_KEY.version;
         this.headers = {};
-        let opt = {
-            url: `https://itunes.apple.com/cn/lookup?id=1600482450`,
+        // let opt = {
+        //     url: `https://itunes.apple.com/cn/lookup?id=1600482450`,
 
-            method: "GET",
-            headers: {},
-            body: ``
-        }
-        new Promise(resolve => {
-            $.get(opt, async (err, resp, data) => {
-                try {
-                    err && $.log(err);
+        //     method: "GET",
+        //     headers: {},
+        //     body: ``
+        // }
+        // new Promise(resolve => {
+        //     $.get(opt, async (err, resp, data) => {
+        //         try {
+        //             err && $.log(err);
 
-                    if (data) {
-                        data = JSON.parse(data)
-                        this.mtVersion = data.data.results[0].version
-                    }
-                } catch (e) {
+        //             if (data) {
+        //                 data = JSON.parse(data)
+        //                 this.mtVersion = data.data.results[0].version
+        //             }
+        //         } catch (e) {
 
-                }
-            })
-        })
+        //         }
+        //     })
+        // })
 
 
         this.headerContext = `
-MT-Lat: 28.499562
-MT-K: 1675213490331
-MT-Lng: 117.134833
+MT-Lat: `+MAOTAI_KEY.lat+`
+MT-K: `+MAOTAI_KEY.k+`
+MT-Lng:  `+MAOTAI_KEY.lng+`
 Host: app.moutai519.com.cn
 MT-User-Tag: 0
 Accept: */*
@@ -1595,11 +1608,11 @@ Accept: */*
 Content-Type: application/json
 MT-Network-Type: WIFI
 MT-Token: 1
-MT-Info: 028e7f96f6369cafe1d105579c5b9377
-MT-Device-ID: C638FDB7-316F-4ABF-966A-B384F9D020A4
+MT-Info: `+MAOTAI_KEY.info+`
+MT-Device-ID: `+MAOTAI_KEY.deviceId+`
 MT-Bundle-ID: com.moutai.mall
 Accept-Language: en-CN;q=1, zh-Hans-CN;q=0.9
-MT-Request-ID: 167560018873318465
+MT-Request-ID: `+MAOTAI_KEY.requestId+`
 MT-APP-Version: ${this.mtVersion}
 User-Agent: iOS;16.3;Apple;?unrecognized?
 MT-R: ${this.mtR}
@@ -1677,7 +1690,7 @@ function  initHeaders(userId = '1', token = '2', lat  , lng ) {
     }
 
 
-    async function getMap(lat = '28.499562', lng = '117.134833') {
+    async function getMap(lat  , lng ) {
 
         const pCMap = {};
         let datas = "";
@@ -1925,8 +1938,7 @@ $.msg(`🎉 ${$.name}`,'',data  );
                         if (code === 401) {
                             $.msg(`🎉 ${$.name},  token失效, 请重新抓包获取`  );
                             this.msg.push({
-                                name: '- 申购结果',
-                                value: 'token失效, 请重新抓包获取'
+                                 value: 'token失效, 请重新抓包获取'
                             });
                             return this.msg
                         } else if (code !== 2000) {

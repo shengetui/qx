@@ -111,24 +111,24 @@ if (url.includes("/interface/sdk/sdkad.php")) {
     if (obj?.show) {
       obj.show = 0;
     }
-  } 
-  
+  }
+
   else if (url.includes("/2/flowpage")) {
     // 更多热搜页面
-	//channelInfo 对象
+    //channelInfo 对象
     if (obj?.channelInfo?.channels?.length > 0) {
-		obj.channelInfo.channels = obj.channelInfo.channels.filter((i) =>   i.title === "热搜");
-     }
-	 //items 对象
-	 if(obj.items.length>0){
-    obj.items = obj.items.filter((i) =>  i.itemId);
-    for ( i  in obj.items){
-      if(obj.items[i].items.length>0){
-        obj.items[i].items = obj.items[i].items.filter((i) => i.data.pic !== "https://simg.s.weibo.com/20210408_search_point_orange.png" &&  i.data.pic !== "https://simg.s.weibo.com/20180205110043_img_search_stick%403x.png" );
+      obj.channelInfo.channels = obj.channelInfo.channels.filter((i) =>   i.title === "热搜");
+    }
+    //items 对象
+    if(obj.items.length>0){
+      obj.items = obj.items.filter((i) =>  i.itemId);
+      for ( i  in obj.items){
+        if(obj.items[i].items.length>0){
+          obj.items[i].items = obj.items[i].items.filter((i) => i.data.pic !== "https://simg.s.weibo.com/20210408_search_point_orange.png" &&  i.data.pic !== "https://simg.s.weibo.com/20180205110043_img_search_stick%403x.png" );
+        }
       }
     }
-  }
- 
+
   }
   else if (url.includes("/2/client/publisher_list")) {
     // 首页右上角按钮
@@ -328,19 +328,19 @@ if (url.includes("/interface/sdk/sdkad.php")) {
     if (obj?.cards?.length > 0) {
       if (obj?.cards?.[0]?.card_group?.length > 0) {
         obj.cards[0].card_group = obj.cards[0].card_group.filter(
-          (c) => !(c?.actionlog?.ext?.includes("ads_word") || c?.itemid?.includes("t:51") || c?.itemid?.includes("ads_word"))
+            (c) => !(c?.actionlog?.ext?.includes("ads_word") || c?.itemid?.includes("t:51") || c?.itemid?.includes("ads_word"))
         );
       }
       obj.cards = obj.cards.filter(
-        (i) =>
-          !(
-            i.itemid?.includes("feed_-_invite") || // 超话里的好友
-            i.itemid?.includes("infeed_friends_recommend") || // 好友关注
-            i.itemid?.includes("infeed_may_interest_in") || // 你可能感兴趣的超话
-            i.itemid?.includes("infeed_pagemanual3") || // 手动区域3
-            i.itemid?.includes("infeed_weibo_mall") || // 微博小店
-            i?.mblog?.mblogtypename?.includes("广告")
-          )
+          (i) =>
+              !(
+                  i.itemid?.includes("feed_-_invite") || // 超话里的好友
+                  i.itemid?.includes("infeed_friends_recommend") || // 好友关注
+                  i.itemid?.includes("infeed_may_interest_in") || // 你可能感兴趣的超话
+                  i.itemid?.includes("infeed_pagemanual3") || // 手动区域3
+                  i.itemid?.includes("infeed_weibo_mall") || // 微博小店
+                  i?.mblog?.mblogtypename?.includes("广告")
+              )
       );
     } else if (obj?.card_group?.length > 0) {
       obj.card_group = obj.card_group.filter((i) => i?.desc?.includes("你可能感兴趣的超话"));
@@ -471,15 +471,15 @@ if (url.includes("/interface/sdk/sdkad.php")) {
         } else if (itemId === "100505_-_top8") {
           if (item?.items?.length > 0) {
             item.items = item.items.filter(
-              (i) =>
-                i.itemId === "100505_-_album" || // 我的相册
-                i.itemId === "100505_-_like" || // 赞/收藏
-                i.itemId === "100505_-_watchhistory" || // 浏览记录
-                i.itemId === "100505_-_draft" // 草稿箱
-              // i.itemId === "100505_-_pay" || // 我的钱包
-              // i.itemId === "100505_-_ordercenter" || // 我的订单
-              // i.itemId === "100505_-_productcenter" || // 创作中心
-              // i.itemId === "100505_-_promote" || // 广告中心
+                (i) =>
+                    i.itemId === "100505_-_album" || // 我的相册
+                    i.itemId === "100505_-_like" || // 赞/收藏
+                    i.itemId === "100505_-_watchhistory" || // 浏览记录
+                    i.itemId === "100505_-_draft" // 草稿箱
+                // i.itemId === "100505_-_pay" || // 我的钱包
+                // i.itemId === "100505_-_ordercenter" || // 我的订单
+                // i.itemId === "100505_-_productcenter" || // 创作中心
+                // i.itemId === "100505_-_promote" || // 广告中心
             );
           }
           newItems.push(item);
@@ -611,17 +611,17 @@ if (url.includes("/interface/sdk/sdkad.php")) {
             if ([19, 118, 208, 217, 249]?.includes(item?.data?.card_type)) {
               continue;
             } else {
-       if (item?.data?.card_type === 17 ){
-      
+              if (item?.data?.card_type === 17 ){
 
-                      item.data.group = item.data?.group?.filter(item => (
+
+                item.data.group = item.data?.group?.filter(item => (
                     !item?.promotion &&
                     ((item?.scheme?.startsWith("sinaweibo://searchall") &&
-                      item?.icon && item.icon !== 'https://simg.s.weibo.com/moter/flags/entertainment_0_small.png') ||
-                     (item?.title_sub?.startsWith("更多热搜")))
-                  )) || [];
-			  
-			  }
+                            item?.icon && item.icon !== 'https://simg.s.weibo.com/moter/flags/entertainment_0_small.png') ||
+                        (item?.title_sub?.startsWith("更多热搜")))
+                )) || [];
+
+              }
               newItems.push(item);
             }
           } else if (item?.category === "cell") {
@@ -632,26 +632,26 @@ if (url.includes("/interface/sdk/sdkad.php")) {
               let newII = [];
               for (let ii of item.items) {
                 if (ii?.data?.card_type === 17) {
-           
+
 
                   ii.data.group = ii.data?.group?.filter(item => (
-                    !item?.promotion &&
-                    ((item?.scheme?.startsWith("sinaweibo://searchall") &&
-                      item?.icon && item.icon !== 'https://simg.s.weibo.com/moter/flags/entertainment_0_small.png') ||
-                     (item?.title_sub?.startsWith("更多热搜")))
+                      !item?.promotion &&
+                      ((item?.scheme?.startsWith("sinaweibo://searchall") &&
+                              item?.icon && item.icon !== 'https://simg.s.weibo.com/moter/flags/entertainment_0_small.png') ||
+                          (item?.title_sub?.startsWith("更多热搜")))
                   )) || [];
                 }
                 if ([19, 118, 208, 217, 249, 182, 118, 192]?.includes(ii?.data?.card_type)) {
-                // if (ii?.data?.card_type === 182 || ii?.data?.card_type === 118 || ii?.data?.card_type === 192) {
+                  // if (ii?.data?.card_type === 182 || ii?.data?.card_type === 118 || ii?.data?.card_type === 192) {
                   // 热议话题
                   continue;
                 } else {
                   newII.push(ii);
                 }
               }
- 
 
-           
+
+
               item.items = newII;
             }
             newItems.push(item);
@@ -696,17 +696,17 @@ if (url.includes("/interface/sdk/sdkad.php")) {
                   if ([19, 118, 208, 217, 249,236]?.includes(item?.data?.card_type)) {
                     continue;
                   } else {
-       if (item?.data?.card_type === 17 ){
-      
+                    if (item?.data?.card_type === 17 ){
+
 
                       item.data.group = item.data?.group?.filter(item => (
-                    !item?.promotion &&
-                    ((item?.scheme?.startsWith("sinaweibo://searchall") &&
-                      item?.icon && item.icon !== 'https://simg.s.weibo.com/moter/flags/entertainment_0_small.png') ||
-                     (item?.title_sub?.startsWith("更多热搜")))
-                  )) || [];
-			  
-			  }
+                          !item?.promotion &&
+                          ((item?.scheme?.startsWith("sinaweibo://searchall") &&
+                                  item?.icon && item.icon !== 'https://simg.s.weibo.com/moter/flags/entertainment_0_small.png') ||
+                              (item?.title_sub?.startsWith("更多热搜")))
+                      )) || [];
+
+                    }
                     newItems.push(item);
                   }
                 } else if (item?.category === "cell") {
@@ -716,27 +716,27 @@ if (url.includes("/interface/sdk/sdkad.php")) {
                   if (item?.items?.length > 0) {
                     let newII = [];
                     for (let ii of item.items) {
-                 
-        
 
-                        if (ii?.data?.card_type === 17) {
-                          ii.data.group = ii.data?.group?.filter(item => (
+
+
+                      if (ii?.data?.card_type === 17) {
+                        ii.data.group = ii.data?.group?.filter(item => (
                             !item?.promotion &&
                             ((item?.scheme?.startsWith("sinaweibo://searchall") &&
-                              item?.icon && item.icon !== 'https://simg.s.weibo.com/moter/flags/entertainment_0_small.png') ||
-                             (item?.title_sub?.startsWith("更多热搜")))
-                          )) || [];
-                        }
-                        if ([19, 118, 208, 217, 249, 182, 118, 192,236]?.includes(ii?.data?.card_type)) {
-                      // if (ii?.data?.card_type === 182 || ii?.data?.card_type === 118  || ii?.data?.card_type === 192) {
+                                    item?.icon && item.icon !== 'https://simg.s.weibo.com/moter/flags/entertainment_0_small.png') ||
+                                (item?.title_sub?.startsWith("更多热搜")))
+                        )) || [];
+                      }
+                      if ([19, 118, 208, 217, 249, 182, 118, 192,236]?.includes(ii?.data?.card_type)) {
+                        // if (ii?.data?.card_type === 182 || ii?.data?.card_type === 118  || ii?.data?.card_type === 192) {
                         // 热议话题
                         continue;
                       } else {
                         newII.push(ii);
                       }
                     }
-              
-      
+
+
                     item.items = newII;
                   }
                   newItems.push(item);

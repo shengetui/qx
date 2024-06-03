@@ -1,0 +1,31 @@
+{
+  "name": "aaa",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "pre": "cnpm install || yarn --registry https://registry.npm.taobao.org || npm install --registry https://registry.npm.taobao.org ",
+    "serve": "vue-cli-service serve",
+    "dev": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "analyze": "vue-cli-service build --report",
+    "test:unit": "vue-cli-service test:unit",
+    "test:e2e": "vue-cli-service test:e2e"
+  },
+  "dependencies": {
+    "got": "^14.3.0",
+    "iconv-lite": "^0.6.3"
+  },
+  "devDependencies": {},
+  "type": "module",
+  "lint-staged": {
+    "*.js": [
+      "vue-cli-service lint",
+      "git add"
+    ],
+    "*.vue": [
+      "vue-cli-service lint",
+      "git add"
+    ]
+  }
+}

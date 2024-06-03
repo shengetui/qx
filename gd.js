@@ -59,7 +59,7 @@ var message1 = '';
                                 if (code == 1) {
                                         message1 += $.time('HH:mm:ss.S') + ` 抢券${i + 1}次:${data?.productName} - ${data?.title}\n`;
                                 } else {
-                                        message1 += $.time('HH:mm:ss.S') + ` 抢券${i + 1}次:${cnMessage}\n`;
+                                        message1 += $.time('HH:mm:ss.S') + ` 抢券${i + 1}次:${data+cnMessage}\n`;
                                 }
                         }
                 }
@@ -106,7 +106,7 @@ function getBuylistBody(adiu, userId, sign) {
                 "imei": adiu,
                 "idfa": adiu,
                 "enterprise": "0",
-                "ts": new Date().getTime(),
+                "ts": Math.floor(new Date().getTime() / 1000),
                 "uid": userId,
                 "userId": userId,
                 "channel": 'h5_common',
@@ -128,7 +128,7 @@ function getSigBody(adiu, userId, sign, rightid) {
                 "imei": adiu,
                 "idfa": adiu,
                 "enterprise": "0",
-                "ts": new Date().getTime(),
+                "ts": Math.floor(new Date().getTime() / 1000),
                 "uid": userId,
                 "userId": userId,
                 "channel": "h5_common",

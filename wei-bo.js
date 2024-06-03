@@ -76,7 +76,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
           for (let group of card.card_group) {
             let cardType = group.card_type;
             // 120,145 视频版块轮播图 192横版热门视频 电影 颜值 电视剧等
-            if ([120, 145, 192]?.includes(cardType)) {
+            if ([120, 145, 192,236]?.includes(cardType)) {
               continue;
             }
             // 我的热搜 查看更多热搜
@@ -356,7 +356,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
       for (let item of obj.items) {
         if (item?.category === "card") {
           // 58微博展示时间段提示 216筛选按钮
-          if ([58, 216]?.includes(item?.data?.card_type)) {
+          if ([58, 216,236]?.includes(item?.data?.card_type)) {
             newItems.push(item);
           }
         } else if (item?.category === "group") {
@@ -692,8 +692,8 @@ if (url.includes("/interface/sdk/sdkad.php")) {
                     newItems.push(item);
                   }
                 } else if (item?.category === "card") {
-                  // 19热议等tab 118横版图片广告 208实况热聊 217错过了热词 249横版视频广告
-                  if ([19, 118, 208, 217, 249]?.includes(item?.data?.card_type)) {
+                  // 19热议等tab 118横版图片广告 208实况热聊 217错过了热词 249横版视频广告 236 热搜趋势
+                  if ([19, 118, 208, 217, 249,236]?.includes(item?.data?.card_type)) {
                     continue;
                   } else {
        if (item?.data?.card_type === 17 ){
@@ -727,7 +727,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
                              (item?.title_sub?.startsWith("更多热搜")))
                           )) || [];
                         }
-                        if ([19, 118, 208, 217, 249, 182, 118, 192]?.includes(ii?.data?.card_type)) {
+                        if ([19, 118, 208, 217, 249, 182, 118, 192,236]?.includes(ii?.data?.card_type)) {
                       // if (ii?.data?.card_type === 182 || ii?.data?.card_type === 118  || ii?.data?.card_type === 192) {
                         // 热议话题
                         continue;
@@ -1005,7 +1005,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
             }
           }
         } else if (item?.category === "card") {
-          if (![4, 197, 1012]?.includes(item?.data?.card_type)) {
+          if (![4, 197, 1012,236]?.includes(item?.data?.card_type)) {
             // 4 你可能感兴趣的超话
             // 197 你可能感兴趣的超话
             // 1012 热门超话

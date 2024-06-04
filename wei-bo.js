@@ -1,4 +1,4 @@
-// 2024-06-04 10:35
+// 2024-01-19 10:35
 
 const url = $request.url;
 if (!$response.body) $done({});
@@ -1247,7 +1247,26 @@ function removeFeedAd(item) {
   // 移除信息流中的热评
   if (item?.comment_summary) {
     delete item.comment_summary;
+  }  // 转发 评论 点赞  只保留评论
+  if(item?.mblog_buttons){
+  item.mblog_buttons = item.mblog_buttons.filter(item2 => item2.name === "评论");
+ 
   }
+    // 移 
+  if (item?.source) {
+    delete item.source;
+  }
+  
+  
+      // 移除vvip
+  if (item?.user?.vvip) {
+  item.user.vvip = 0
+     
+  }  
+      // 移除svip
+  if (item?.user?.svip) {
+  item.user.svip = 0
+     
 }
 
 // 移除投票窗口

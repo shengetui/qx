@@ -1250,7 +1250,10 @@ function removeFeedAd(item) {
   if (item?.comment_summary) {
     delete item.comment_summary;
   }
-
+   // 移除超话链接
+   if (item?.title_source) {
+    delete item.title_source;
+  }
 
   // 转发 评论 点赞  只保留评论
   if(item?.mblog_buttons){
@@ -1266,14 +1269,12 @@ function removeFeedAd(item) {
         // 移除vvip
     if (item?.user?.vvip) {
     item.user.vvip = 0
-       
-    }  
-        // 移除svip
-    if (item?.user?.svip) {
     item.user.svip = 0
-       
-    }
-
+    item.user.mbrank = 0
+    item.user.mbtype = 0
+    }  
+  
+ 
 
 
 }

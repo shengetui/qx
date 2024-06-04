@@ -1282,6 +1282,8 @@ function removeFeedAd(item) {
     item.user.svip = 0
     item.user.mbrank = 0
     item.user.mbtype = 0
+    item.user.verified_type = 0
+    item.user.verified_type = {}
     }  
   
 

@@ -15,10 +15,10 @@ $.is_debug = ($.isNode() ? process.env.IS_DEDUG : $.getdata('is_debug')) || 'tru
 
         }
     })()
-        .catch((e) => {
+        。catch((e) => {
             $.msg('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
         })
-        .finally(() => {
+        。finally(() => {
             $.done();
         })
 

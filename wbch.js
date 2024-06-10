@@ -8,6 +8,7 @@ $.is_debug = ($.isNode() ? process.env.IS_DEDUG : $.getdata('is_debug')) || 'tru
         for (let i=0; i<alist.length; i++) {
             await main(alist[i]);  // 每日签到
         }
+        $.message = '';
         if ($.message) {
             $.message = $.message.replace(/\n+$/, '');
 
@@ -58,7 +59,7 @@ async function main(cc) {
                 if (data) {
                     console.log(data)
 
-                    $.message = '';
+
                     let result = JSON.parse(data);
 
                         $.message += result.msg ;

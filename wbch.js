@@ -1,4 +1,4 @@
-//1122
+//1122；
 const $ = new Env('微博超话');
 $.is_debug = ($.isNode() ? process.env.IS_DEDUG : $.getdata('is_debug')) || 'true';
     !(async () => {

@@ -648,7 +648,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
                               item?.icon && item.icon !== 'https://simg.s.weibo.com/moter/flags/entertainment_0_small.png') ||
                           (item?.title_sub?.startsWith("更多热搜")))
                   )) || [];
-                  item.data?.group?.forEach(item3 => {
+                  ii.data?.group?.forEach(item3 => {
                     item3.icon = ""; 
                    });
                 }
@@ -719,9 +719,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
                           ((item?.scheme?.startsWith("sinaweibo://searchall") ) ||
                               (item?.title_sub?.startsWith("更多热搜")))
                       )) || [];
-                      item.data?.group?.forEach(item3 => {
-                        item3.icon = ""; 
-                       });
+
                     }
                     newItems.push(item);
                   }
@@ -738,7 +736,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
                             ((item?.scheme?.startsWith("sinaweibo://searchall")  ) ||
                                 (item?.title_sub?.startsWith("更多热搜")))
                         )) || [];
-                        item.data?.group?.forEach(item3 => {
+                        ii.data?.group?.forEach(item3 => {
                           item3.icon = ""; 
                          });
                       }

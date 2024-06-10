@@ -1,4 +1,4 @@
-// 2024-01-19 10:35
+// 2024-06-10 17:57
 
 const url = $request.url;
 if (!$response.body) $done({});
@@ -80,7 +80,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
               continue;
             }
             // 我的热搜 查看更多热搜
-            if ([6, 101]?.includes(cardType)) {
+            if ([6, 101,236]?.includes(cardType)) {
               continue;
             }
             if (group?.mblog) {
@@ -608,19 +608,24 @@ if (url.includes("/interface/sdk/sdkad.php")) {
             }
           } else if (item?.category === "card") {
             // 19热议等tab 118横版图片广告 208实况热聊 217错过了热词 249横版视频广告
-            if ([19, 118, 208, 217, 249]?.includes(item?.data?.card_type)) {
+            if ([19, 118, 208, 217, 249,236,101,182,118,192]?.includes(item?.data?.card_type)) {
+         
               continue;
             } else {
               if (item?.data?.card_type === 17 ){
 
-
+                item.data?.group?.forEach(item3 => {
+                  item3.icon = ""; 
+                 });
+                 
                 item.data.group = item.data?.group?.filter(item => (
                     !item?.promotion &&
-                    ((item?.scheme?.startsWith("sinaweibo://searchall") &&
-                            item?.icon && item.icon !== 'https://simg.s.weibo.com/moter/flags/entertainment_0_small.png') ||
+                    ((item?.scheme?.startsWith("sinaweibo://searchall") ) ||
                         (item?.title_sub?.startsWith("更多热搜")))
                 )) || [];
-
+                item.data?.group?.forEach(item3 => {
+                  item3.icon = ""; 
+                 });
               }
               newItems.push(item);
             }
@@ -633,15 +638,22 @@ if (url.includes("/interface/sdk/sdkad.php")) {
               for (let ii of item.items) {
                 if (ii?.data?.card_type === 17) {
 
-
+                  ii.data?.group?.forEach(item3 => {
+                    item3.icon = ""; 
+                   });
+                   
                   ii.data.group = ii.data?.group?.filter(item => (
                       !item?.promotion &&
                       ((item?.scheme?.startsWith("sinaweibo://searchall") &&
                               item?.icon && item.icon !== 'https://simg.s.weibo.com/moter/flags/entertainment_0_small.png') ||
                           (item?.title_sub?.startsWith("更多热搜")))
                   )) || [];
+                  item.data?.group?.forEach(item3 => {
+                    item3.icon = ""; 
+                   });
                 }
-                if ([19, 118, 208, 217, 249, 182, 118, 192]?.includes(ii?.data?.card_type)) {
+           
+                  if ([19, 118, 208, 217, 249,236,101,182,118,192]?.includes(ii?.data?.card_type)) {
                   // if (ii?.data?.card_type === 182 || ii?.data?.card_type === 118 || ii?.data?.card_type === 192) {
                   // 热议话题
                   continue;
@@ -693,19 +705,23 @@ if (url.includes("/interface/sdk/sdkad.php")) {
                   }
                 } else if (item?.category === "card") {
                   // 19热议等tab 118横版图片广告 208实况热聊 217错过了热词 249横版视频广告 236 热搜趋势
-                  if ([19, 118, 208, 217, 249,236]?.includes(item?.data?.card_type)) {
+                  if ([19, 118, 208, 217, 249,236,101,182,118,192]?.includes(item?.data?.card_type)) { 
                     continue;
                   } else {
                     if (item?.data?.card_type === 17 ){
 
-
+                      item.data?.group?.forEach(item3 => {
+                        item3.icon = ""; 
+                       });
+                       
                       item.data.group = item.data?.group?.filter(item => (
                           !item?.promotion &&
-                          ((item?.scheme?.startsWith("sinaweibo://searchall") &&
-                                  item?.icon && item.icon !== 'https://simg.s.weibo.com/moter/flags/entertainment_0_small.png') ||
+                          ((item?.scheme?.startsWith("sinaweibo://searchall") ) ||
                               (item?.title_sub?.startsWith("更多热搜")))
                       )) || [];
-
+                      item.data?.group?.forEach(item3 => {
+                        item3.icon = ""; 
+                       });
                     }
                     newItems.push(item);
                   }
@@ -716,18 +732,17 @@ if (url.includes("/interface/sdk/sdkad.php")) {
                   if (item?.items?.length > 0) {
                     let newII = [];
                     for (let ii of item.items) {
-
-
-
                       if (ii?.data?.card_type === 17) {
                         ii.data.group = ii.data?.group?.filter(item => (
                             !item?.promotion &&
-                            ((item?.scheme?.startsWith("sinaweibo://searchall") &&
-                                    item?.icon && item.icon !== 'https://simg.s.weibo.com/moter/flags/entertainment_0_small.png') ||
+                            ((item?.scheme?.startsWith("sinaweibo://searchall")  ) ||
                                 (item?.title_sub?.startsWith("更多热搜")))
                         )) || [];
+                        item.data?.group?.forEach(item3 => {
+                          item3.icon = ""; 
+                         });
                       }
-                      if ([19, 118, 208, 217, 249, 182, 118, 192,236]?.includes(ii?.data?.card_type)) {
+                   if ([19, 118, 208, 217, 249,236,101,182,192]?.includes(ii?.data?.card_type)) { 
                         // if (ii?.data?.card_type === 182 || ii?.data?.card_type === 118  || ii?.data?.card_type === 192) {
                         // 热议话题
                         continue;
@@ -1251,6 +1266,35 @@ function removeFeedAd(item) {
   if (item?.comment_summary) {
     delete item.comment_summary;
   }
+   // 移除超话链接
+   if (item?.title_source) {
+    delete item.title_source;
+  }
+
+  // 转发 评论 点赞  只保留评论
+  if(item?.mblog_buttons){
+    item.mblog_buttons = item.mblog_buttons.filter(item2 => item2.name === "评论");
+   
+    }
+      // 移 
+    if (item?.source) {
+      delete item.source;
+    }
+    
+    
+        // 移除vvip
+    if (item?.user) {
+    item.user.vvip = 0
+    item.user.svip = 0
+    item.user.mbrank = 0
+    item.user.mbtype = 0
+    item.user.verified_type = 0
+    item.user.verified_type = {}
+    }  
+  
+
+
+
 }
 
 // 移除投票窗口

@@ -1,10 +1,13 @@
-
+//11
 const $ = new Env('微博超话');
 $.is_debug = ($.isNode() ? process.env.IS_DEDUG : $.getdata('is_debug')) || 'true';
     !(async () => {
         console.log(`===== 账号 开始执行 =====\n`);
-        await main();  // 每日签到
+        var alist=['100808167de8f857d9ed4ff9d097dc0b425e66','1008088616ab8d92ea44d200b2b2df4eaa381f','1008082be446577762bb6cec8681f5e2d67d18','100808657a3a6afe052efe1da34f6db76b016a','10080861838dd4bdf01b1414e70089ca10d776']
 
+        for (let i=0; i<alist.length; i++) {
+            await main(alist[i]);  // 每日签到
+        }
         if ($.message) {
             $.message = $.message.replace(/\n+$/, '');
 
@@ -16,19 +19,17 @@ $.is_debug = ($.isNode() ? process.env.IS_DEDUG : $.getdata('is_debug')) || 'tru
             $.msg('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
         })
         .finally(() => {
-            $.done();
+
         })
 
 // 开始签到
-async function main() {
+async function main(cc) {
 
     return new Promise(resolve => {
 
-        var alist=['100808167de8f857d9ed4ff9d097dc0b425e66','1008088616ab8d92ea44d200b2b2df4eaa381f','1008082be446577762bb6cec8681f5e2d67d18','100808657a3a6afe052efe1da34f6db76b016a','10080861838dd4bdf01b1414e70089ca10d776']
 
-        for (let i=0; i<alist.length; i++) {
         let opt = {
-            url : `https://api.weibo.cn/2/page/button?aid=01A_jAiQzR2s_NJ804Dx98J4FHjRy5AXFFZRUUKTiwsCwzflk.&c=iphone&from=10E5393010&gsid=_2A25LYSdTDeRxGeFL7lIZ-CfIzTSIHXVmNz2brDV6PUJbj9ANLWvgkWpNfen42iM2d5Q6EalSJdSpAl9FSLZhiFlu&s=561c202f&request_url=http://i.huati.weibo.com/mobile/super/active_checkin?pageid=`+alist[i],
+            url : `https://api.weibo.cn/2/page/button?aid=01A_jAiQzR2s_NJ804Dx98J4FHjRy5AXFFZRUUKTiwsCwzflk.&c=iphone&from=10E5393010&gsid=_2A25LYSdTDeRxGeFL7lIZ-CfIzTSIHXVmNz2brDV6PUJbj9ANLWvgkWpNfen42iM2d5Q6EalSJdSpAl9FSLZhiFlu&s=561c202f&request_url=http://i.huati.weibo.com/mobile/super/active_checkin?pageid=`+cc,
 
             method: "GET",
             headers: {
@@ -73,7 +74,7 @@ async function main() {
         })
 
 
-        }
+
 
     })
 }

@@ -1,4 +1,4 @@
-// 2024-06-10 20:58 qwa
+// 2024-06-11 20:58 qwa
 
 const url = $request.url;
 if (!$response.body) $done({});
@@ -79,7 +79,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
             if ([120, 145, 192,236]?.includes(cardType)) {
               continue;
             }
-            // 我的热搜 查看更多热搜
+            // 我的热搜 查看更多 热搜
             if ([6, 101,236]?.includes(cardType)) {
               continue;
             }
@@ -114,7 +114,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
   }
 
   else if (url.includes("/2/flowpage")) {
-    // 更多热搜页面
+    // 更多 热搜页面
     //channelInfo 对象
     if (obj?.channelInfo?.channels?.length > 0) {
       obj.channelInfo.channels = obj.channelInfo.channels.filter((i) =>   i.title === "热搜");
@@ -614,10 +614,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
             } else {
               if (item?.data?.card_type === 17 ){
 
-                item.data?.group?.forEach(item3 => {
-                  item3.icon = ""; 
-                 });
-                 
+
                 item.data.group = item.data?.group?.filter(item => (
                     !item?.promotion &&
                     ((item?.scheme?.startsWith("sinaweibo://searchall") ) ||
@@ -638,10 +635,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
               for (let ii of item.items) {
                 if (ii?.data?.card_type === 17) {
 
-                  ii.data?.group?.forEach(item3 => {
-                    item3.icon = ""; 
-                   });
-                   
+
                   ii.data.group = ii.data?.group?.filter(item => (
                       !item?.promotion &&
                       ((item?.scheme?.startsWith("sinaweibo://searchall") &&
@@ -710,7 +704,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
                   } else {
                     if (item?.data?.card_type === 17 ){
 
-                      item.data?.group?.forEach(item3 => {
+                       item.data?.group?.forEach(item3 => {
                         item3.icon = ""; 
                        });
                        

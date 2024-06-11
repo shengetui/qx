@@ -1,27 +1,27 @@
 //1122；
 const $ = new Env('微博超话');
 $.is_debug = ($.isNode() ? process.env.IS_DEDUG : $.getdata('is_debug')) || 'true';
-    !(async () => {
-        console.log(`===== 账号 开始执行 =====\n`);
-        var alist=['100808167de8f857d9ed4ff9d097dc0b425e66','1008088616ab8d92ea44d200b2b2df4eaa381f','1008082be446577762bb6cec8681f5e2d67d18','100808657a3a6afe052efe1da34f6db76b016a','10080861838dd4bdf01b1414e70089ca10d776']
+!(async () => {
+    console.log(`===== 账号 开始执行 =====\n`);
+    var alist = ['100808167de8f857d9ed4ff9d097dc0b425e66', '1008088616ab8d92ea44d200b2b2df4eaa381f', '1008082be446577762bb6cec8681f5e2d67d18', '100808657a3a6afe052efe1da34f6db76b016a', '10080861838dd4bdf01b1414e70089ca10d776']
 
-        for (let i=0; i<alist.length; i++) {
-            await main(alist[i]);  // 每日签到
-        }
-        $.message = '';
-        if ($.message) {
-            $.message = $.message.replace(/\n+$/, '');
+    for (let i = 0; i < alist.length; i++) {
+        await main(alist[i]);  // 每日签到
+    }
 
-                $.msg($.name, '', $.message);
+    if ($.message) {
+        $.message = $.message.replace(/\n+$/, '');
 
-        }
-    })()
-        .catch((e) => {
-            $.msg('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
-        })
-        .finally(() => {
-            $.done();
-        })
+        $.msg($.name, '', $.message);
+
+    }
+})()
+    .catch((e) => {
+        $.msg('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
+    })
+    .finally(() => {
+        $.done();
+    })
 
 // 开始签到
 async function main(cc) {
@@ -30,7 +30,7 @@ async function main(cc) {
 
 
         let opt = {
-            url : `https://api.weibo.cn/2/page/button?aid=01A_jAiQzR2s_NJ804Dx98J4FHjRy5AXFFZRUUKTiwsCwzflk.&c=iphone&from=10E5393010&gsid=_2A25LYSdTDeRxGeFL7lIZ-CfIzTSIHXVmNz2brDV6PUJbj9ANLWvgkWpNfen42iM2d5Q6EalSJdSpAl9FSLZhiFlu&s=561c202f&request_url=http://i.huati.weibo.com/mobile/super/active_checkin?pageid=`+cc,
+            url: `https://api.weibo.cn/2/page/button?aid=01A_jAiQzR2s_NJ804Dx98J4FHjRy5AXFFZRUUKTiwsCwzflk.&c=iphone&from=10E5393010&gsid=_2A25LYSdTDeRxGeFL7lIZ-CfIzTSIHXVmNz2brDV6PUJbj9ANLWvgkWpNfen42iM2d5Q6EalSJdSpAl9FSLZhiFlu&s=561c202f&request_url=http://i.huati.weibo.com/mobile/super/active_checkin?pageid=` + cc,
 
             method: "GET",
             headers: {
@@ -47,10 +47,9 @@ async function main(cc) {
                 'Accept-Language': `en-US,en`,
                 'Accept': `*/*`,
                 'cronet_rid': `4944743`
-            } ,
+            },
             body: ``
         }
-
 
 
         $.post(opt, async (err, resp, data) => {
@@ -58,11 +57,11 @@ async function main(cc) {
                 err && $.log(err);
                 if (data) {
                     console.log(data)
-
-
                     let result = JSON.parse(data);
-
-                        $.message += result.msg ;
+                    if ($.message) {
+                        $.message = '';
+                    }
+                    $.message += result.msg;
 
                 } else {
                     $.log("服务器返回了空数据");
@@ -73,8 +72,6 @@ async function main(cc) {
                 resolve();
             }
         })
-
-
 
 
     })

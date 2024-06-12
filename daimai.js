@@ -6,7 +6,7 @@ let body = $response.body;
 
 
 try {
-
+console.log(body)
   body.data.result = JSON.parse(body.data.result )
   console.log(body)
   for (let item of  body.data.result.perform.skuList) {

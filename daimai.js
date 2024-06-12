@@ -4,9 +4,9 @@ const url = $request.url;
 if (!$response.body) $done({});
 let body = $response.body;
 
-
-try {
 console.log(body)
+try {
+
   body.data.result = JSON.parse(body.data.result )
   console.log(body)
   for (let item of  body.data.result.perform.skuList) {

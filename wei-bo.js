@@ -629,8 +629,9 @@ if (url.includes("/interface/sdk/sdkad.php")) {
                   ii.data?.group?.forEach(item3 => {
                     item3.icon = ""; 
                    });
+                   newII.push(ii);
                 }
-              
+           
               }
 
 
@@ -694,6 +695,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
                         ii.data?.group?.forEach(item3 => {
                           item3.icon = ""; 
                          });
+                         newII.push(ii);
                       }
                 
                     }

@@ -1,4 +1,4 @@
-// 2024-12-11 20:58 qwa
+// 2024-12-14 20:58 qwa
 
 const url = $request.url;
 if (!$response.body) $done({});
@@ -629,15 +629,11 @@ if (url.includes("/interface/sdk/sdkad.php")) {
                   ii.data?.group?.forEach(item3 => {
                     item3.icon = ""; 
                    });
+                }else{
+                  ii=[];
                 }
            
-                  if ([19, 118, 208, 217, 249,236,101,182,118,192]?.includes(ii?.data?.card_type)) {
-                  // if (ii?.data?.card_type === 182 || ii?.data?.card_type === 118 || ii?.data?.card_type === 192) {
-                  // 热议话题
-                  continue;
-                } else {
-                  newII.push(ii);
-                }
+              
               }
 
 
@@ -702,13 +698,9 @@ if (url.includes("/interface/sdk/sdkad.php")) {
                           item3.icon = ""; 
                          });
                       }
-                   if ([19, 118, 208, 217, 249,236,101,182,192]?.includes(ii?.data?.card_type)) { 
-                        // if (ii?.data?.card_type === 182 || ii?.data?.card_type === 118  || ii?.data?.card_type === 192) {
-                        // 热议话题
-                        continue;
-                      } else {
-                        newII.push(ii);
-                      }
+                  else{
+                    ii=[];
+                  }
                     }
 
 

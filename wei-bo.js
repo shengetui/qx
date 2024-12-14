@@ -607,7 +607,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
               newItems.push(item);
             }
           }
-        
+      
            else if (item?.category === "card") {
             // 19热议等tab 118横版图片广告 208实况热聊 217错过了热词 249横版视频广告
             if (![17,101]?.includes(item?.data?.card_type)) {
@@ -649,7 +649,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
                    });
                 }
            
-                  if ([19, 118, 208, 217, 249,236,101,182,118,192]?.includes(ii?.data?.card_type)) {
+                  if (![17,101]?.includes(ii?.data?.card_type)) {
                   // if (ii?.data?.card_type === 182 || ii?.data?.card_type === 118 || ii?.data?.card_type === 192) {
                   // 热议话题
                   continue;
@@ -738,7 +738,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
                           item3.icon = ""; 
                          });
                       }
-                   if ([19, 118, 208, 217, 249,236,101,182,192]?.includes(ii?.data?.card_type)) { 
+                   if (![17,101]?.includes(ii?.data?.card_type)) { 
                         // if (ii?.data?.card_type === 182 || ii?.data?.card_type === 118  || ii?.data?.card_type === 192) {
                         // 热议话题
                         continue;

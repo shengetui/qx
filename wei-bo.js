@@ -629,10 +629,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
                   ii.data?.group?.forEach(item3 => {
                     item3.icon = ""; 
                    });
-                }else{
-                  ii=[];
                 }
-           
               
               }
 
@@ -698,9 +695,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
                           item3.icon = ""; 
                          });
                       }
-                  else{
-                    ii=[];
-                  }
+                
                     }
 
 

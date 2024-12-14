@@ -1,4 +1,4 @@
-// 2024-06-11 20:58 qwa
+// 2024-12-11 20:58 qwa
 
 const url = $request.url;
 if (!$response.body) $done({});
@@ -609,10 +609,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
           }
       
            else if (item?.category === "card") {
-            // 19热议等tab 118横版图片广告 208实况热聊 217错过了热词 249横版视频广告
-           
-              item.data ={};
-           
+            item = [];
           } else if (item?.category === "cell") {
             // 保留信息流分割线
             newItems.push(item);
@@ -634,7 +631,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
                    });
                 }
            
-                  if (![17,101]?.includes(ii?.data?.card_type)) {
+                  if ([19, 118, 208, 217, 249,236,101,182,118,192]?.includes(ii?.data?.card_type)) {
                   // if (ii?.data?.card_type === 182 || ii?.data?.card_type === 118 || ii?.data?.card_type === 192) {
                   // 热议话题
                   continue;
@@ -687,9 +684,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
                   }
 
                 } else if (item?.category === "card") {
-               
-              item.data ={};
-                  // }
+                  item = [];
                 } else if (item?.category === "cell") {
                   // 保留信息流分割线
                   newItems.push(item);
@@ -707,7 +702,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
                           item3.icon = ""; 
                          });
                       }
-                   if (![17,101]?.includes(ii?.data?.card_type)) { 
+                   if ([19, 118, 208, 217, 249,236,101,182,192]?.includes(ii?.data?.card_type)) { 
                         // if (ii?.data?.card_type === 182 || ii?.data?.card_type === 118  || ii?.data?.card_type === 192) {
                         // 热议话题
                         continue;

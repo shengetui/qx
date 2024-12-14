@@ -610,10 +610,10 @@ if (url.includes("/interface/sdk/sdkad.php")) {
       
            else if (item?.category === "card") {
             // 19热议等tab 118横版图片广告 208实况热聊 217错过了热词 249横版视频广告
-            if (![17,101]?.includes(item?.data?.card_type)) {
+            // if (![17,101]?.includes(item?.data?.card_type)) {
          
-              continue;
-            } else {
+            //   continue;
+            // } else {
               if (item?.data?.card_type === 17 ){
 
 
@@ -627,7 +627,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
                  });
               }
               newItems.push(item);
-            }
+            // }
           } else if (item?.category === "cell") {
             // 保留信息流分割线
             newItems.push(item);
@@ -703,9 +703,9 @@ if (url.includes("/interface/sdk/sdkad.php")) {
 
                 } else if (item?.category === "card") {
                   // 19热议等tab 118横版图片广告 208实况热聊 217错过了热词 249横版视频广告 236 热搜趋势
-                  if (![17,101]?.includes(item?.data?.card_type)) { 
-                    continue;
-                  } else {
+                  // if (![17,101]?.includes(item?.data?.card_type)) { 
+                  //   continue;
+                  // } else {
                     if (item?.data?.card_type === 17 ){
 
                        item.data?.group?.forEach(item3 => {
@@ -720,7 +720,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
 
                     }
                     newItems.push(item);
-                  }
+                  // }
                 } else if (item?.category === "cell") {
                   // 保留信息流分割线
                   newItems.push(item);

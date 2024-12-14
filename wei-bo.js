@@ -607,11 +607,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
               newItems.push(item);
             }
           }
-          if (item.type === "vertical") {
-            console.log('移除内嵌的模块💕💕');
-            item = {};
-            continue;
-          }
+        
            else if (item?.category === "card") {
             // 19热议等tab 118横版图片广告 208实况热聊 217错过了热词 249横版视频广告
             if (![17,101]?.includes(item?.data?.card_type)) {
@@ -697,11 +693,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
             if (payload?.items?.length > 0) {
               let newItems = [];
               for (let item of payload.items) {
-                if (item.type === "vertical") {
-                  console.log('移除内嵌的模块💕💕');
-                  item = {};
-                  continue;
-                }
+            
                 if (item?.category === "feed") {
                   if (!isAd(item.data)) {
                     // 信息流推广

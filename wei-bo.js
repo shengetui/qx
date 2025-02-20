@@ -647,7 +647,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
         delete obj?.loadedInfo;
       }
     } else if (url.includes("finder")) {
-      let channels = obj.channelInfo.channels;
+      let channels = obj.header.data;
       if (channels?.length > 0) {
         for (let channel of channels) {
           let payload = channel.payload;

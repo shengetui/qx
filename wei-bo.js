@@ -1,4 +1,4 @@
-// 2025-12-14 20:58 qwaas
+// 21024-12-14 20:58 qwaas
 
 const url = $request.url;
 if (!$response.body) $done({});
@@ -723,8 +723,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
           }
         }
       }
-
- 
+    }
   } else if (url.includes("/2/searchall")) {
     if (obj?.header?.data) {
       // 商品推广头部淘宝跳转

@@ -1,4 +1,4 @@
-// 2024-12-14 20:58 qwaas
+// 2025-12-14 20:58 qwaas
 
 const url = $request.url;
 if (!$response.body) $done({});
@@ -647,7 +647,19 @@ if (url.includes("/interface/sdk/sdkad.php")) {
         delete obj?.loadedInfo;
       }
     } else if (url.includes("finder")) {
-      let channels = obj.header.data;
+      if (obj?.header?.data?.items?.length > 0) {
+        obj.header.data.items = obj.header.data.items.filter(item => {
+            // 使用可选链操作符安全访问 items 数组和 data.card_type
+            if (item?.items?.length > 0) {
+                item.items = item.items.filter(subItem => subItem?.data?.card_type !== 118);
+                // 如果过滤后仍有元素，则保留该项
+                return item.items.length > 0;
+            }
+            // 如果没有子 items 数组或者长度为 0，则直接移除该项
+            return false;
+        });
+    }
+      let channels = obj.channelInfo.channels;
       if (channels?.length > 0) {
         for (let channel of channels) {
           let payload = channel.payload;
@@ -711,7 +723,8 @@ if (url.includes("/interface/sdk/sdkad.php")) {
           }
         }
       }
-    }
+
+ 
   } else if (url.includes("/2/searchall")) {
     if (obj?.header?.data) {
       // 商品推广头部淘宝跳转
